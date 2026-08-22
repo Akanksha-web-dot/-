@@ -1,1867 +1,1442 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;600;700;900&display=swap');
 
 
-/* =====================================
-   BASIC RESET
-===================================== */
+/* =========================================
+   RESET
+========================================= */
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 
 body {
 
-  min-height: 100vh;
+    min-height: 100vh;
 
-  overflow-x: hidden;
+    overflow: hidden;
 
-  background: #010207;
+    background: #000;
 
-  color: white;
+    color: white;
 
-  font-family: 'Orbitron', sans-serif;
-
-}
-
-
-/* =====================================
-   OPENING SCREEN
-===================================== */
-
-#introScreen {
-
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 9999;
-
-  background:
-    radial-gradient(
-      circle,
-      #17191f 0%,
-      #050609 40%,
-      #000 100%
-    );
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  align-items: center;
-
-  animation: introDisappear 1.5s ease forwards;
-
-  animation-delay: 3.8s;
+    font-family: 'Orbitron', sans-serif;
 
 }
 
 
-.introLogo {
+/* =========================================
+   BACKGROUND IMAGE
+========================================= */
 
-  font-size: 90px;
+.background {
 
-  filter:
-    drop-shadow(0 0 10px #ffd900)
-    drop-shadow(0 0 40px #ffd900);
+    position: fixed;
 
-  animation:
-    logoPulse 1.5s infinite alternate;
+    inset: 0;
 
-}
+    z-index: -10;
 
+    background-image:
 
-.introText {
+        url("gotham-bg.jpg");
 
-  margin-top: 20px;
+    background-size: cover;
 
-  font-family: 'Bebas Neue', sans-serif;
+    background-position: center;
 
-  font-size: 65px;
+    transform: scale(1.08);
 
-  letter-spacing: 12px;
-
-  color: #f5c518;
-
-  text-shadow:
-    0 0 10px #f5c518,
-    0 0 30px #f5c518;
+    animation:
+        backgroundZoom 20s ease-in-out infinite alternate;
 
 }
 
 
-.loadingText {
+@keyframes backgroundZoom {
 
-  margin-top: 15px;
+    from {
+        transform: scale(1.05);
+    }
 
-  font-size: 11px;
-
-  letter-spacing: 5px;
-
-  color: #aaa;
-
-}
-
-
-.loadingBar {
-
-  width: 260px;
-
-  height: 4px;
-
-  margin-top: 20px;
-
-  background: #222;
-
-  overflow: hidden;
+    to {
+        transform: scale(1.18);
+    }
 
 }
 
 
-.loadingProgress {
+.dark-overlay {
 
-  height: 100%;
+    position: fixed;
 
-  width: 0%;
+    inset: 0;
 
-  background: #f5c518;
+    z-index: -9;
 
-  box-shadow: 0 0 20px #f5c518;
+    background:
 
-  animation: loading 3.5s forwards;
-
-}
-
-
-@keyframes loading {
-
-  to {
-    width: 100%;
-  }
+        radial-gradient(
+            circle at center,
+            transparent 5%,
+            rgba(0,0,0,.45) 50%,
+            rgba(0,0,0,.9) 100%
+        );
 
 }
 
 
-@keyframes introDisappear {
-
-  to {
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform: scale(1.5);
-
-  }
-
-}
-
-
-@keyframes logoPulse {
-
-  from {
-
-    transform: scale(.9);
-
-  }
-
-  to {
-
-    transform: scale(1.15);
-
-  }
-
-}
-
-
-/* =====================================
-   SKY
-===================================== */
-
-.sky {
-
-  position: fixed;
-
-  inset: 0;
-
-  z-index: -10;
-
-  background:
-
-    radial-gradient(
-      circle at 50% 25%,
-      #252934 0%,
-      #10131c 30%,
-      #05060b 65%,
-      #000 100%
-    );
-
-}
-
-
-/* =====================================
-   MOON
-===================================== */
-
-.moon {
-
-  position: fixed;
-
-  width: 180px;
-
-  height: 180px;
-
-  border-radius: 50%;
-
-  top: 8%;
-
-  left: 12%;
-
-  background: #d9d9c2;
-
-  opacity: .13;
-
-  box-shadow:
-
-    0 0 50px #eee,
-
-    0 0 120px rgba(255,255,255,.15);
-
-}
-
-
-/* =====================================
-   CLOUDS
-===================================== */
-
-.cloud {
-
-  position: fixed;
-
-  width: 350px;
-
-  height: 70px;
-
-  background: rgba(20,22,29,.6);
-
-  border-radius: 50%;
-
-  filter: blur(10px);
-
-  z-index: -5;
-
-}
-
-
-.cloud1 {
-
-  top: 15%;
-
-  left: -200px;
-
-  animation: cloudMove 35s linear infinite;
-
-}
-
-
-.cloud2 {
-
-  top: 35%;
-
-  left: -400px;
-
-  animation: cloudMove 50s linear infinite;
-
-  animation-delay: 8s;
-
-}
-
-
-.cloud3 {
-
-  top: 55%;
-
-  left: -300px;
-
-  animation: cloudMove 42s linear infinite;
-
-  animation-delay: 15s;
-
-}
-
-
-@keyframes cloudMove {
-
-  to {
-
-    transform: translateX(140vw);
-
-  }
-
-}
-
-
-/* =====================================
-   LIGHTNING
-===================================== */
-
-.lightning {
-
-  position: fixed;
-
-  inset: 0;
-
-  z-index: -2;
-
-  pointer-events: none;
-
-  animation: lightning 8s infinite;
-
-}
-
-
-@keyframes lightning {
-
-  0%, 88%, 94%, 100% {
-
-    background: transparent;
-
-  }
-
-  89% {
-
-    background: rgba(255,255,255,.08);
-
-  }
-
-  90% {
-
-    background: rgba(255,255,255,.3);
-
-  }
-
-  91% {
-
-    background: transparent;
-
-  }
-
-  93% {
-
-    background: rgba(255,255,255,.15);
-
-  }
-
-}
-
-
-/* =====================================
+/* =========================================
    RAIN
-===================================== */
+========================================= */
 
 .rain {
 
-  position: fixed;
+    position: fixed;
 
-  inset: 0;
+    inset: -100%;
 
-  z-index: -1;
+    z-index: -5;
 
-  pointer-events: none;
+    opacity: .35;
 
-  opacity: .25;
+    background-image:
 
-  background-image:
+        repeating-linear-gradient(
+            110deg,
+            transparent 0px,
+            transparent 10px,
+            rgba(180,190,200,.35) 11px,
+            transparent 12px
+        );
 
-    repeating-linear-gradient(
-      105deg,
-      transparent 0px,
-      transparent 8px,
-      rgba(180,190,210,.35) 9px,
-      transparent 10px
-    );
+    background-size: 90px 90px;
 
-  background-size: 80px 80px;
-
-  animation: rainFall .7s linear infinite;
-
-}
-
-
-@keyframes rainFall {
-
-  from {
-
-    background-position: 0 0;
-
-  }
-
-  to {
-
-    background-position: 80px 160px;
-
-  }
+    animation:
+        rainMove .7s linear infinite;
 
 }
 
 
-/* =====================================
-   SEARCHLIGHTS
-===================================== */
+@keyframes rainMove {
 
-.searchlight {
+    to {
 
-  position: fixed;
+        transform:
+            translate(90px,180px);
 
-  width: 600px;
-
-  height: 15px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,180,.15),
-    transparent
-  );
-
-  transform-origin: left center;
-
-  z-index: -3;
-
-  filter: blur(8px);
+    }
 
 }
 
 
-.searchlight1 {
+/* =========================================
+   LIGHTNING
+========================================= */
 
-  bottom: 20%;
+.lightning {
 
-  left: 0;
+    position: fixed;
 
-  transform: rotate(-25deg);
+    inset: 0;
 
-  animation: search1 7s ease-in-out infinite alternate;
+    z-index: 20;
 
-}
+    pointer-events: none;
 
-
-.searchlight2 {
-
-  bottom: 15%;
-
-  right: 0;
-
-  transform-origin: right center;
-
-  transform: rotate(25deg);
-
-  animation: search2 9s ease-in-out infinite alternate;
+    opacity: 0;
 
 }
 
 
-@keyframes search1 {
+.lightning.flash {
 
-  from {
-
-    transform: rotate(-35deg);
-
-  }
-
-  to {
-
-    transform: rotate(15deg);
-
-  }
+    animation:
+        lightningFlash .5s ease;
 
 }
 
 
-@keyframes search2 {
+@keyframes lightningFlash {
 
-  from {
+    0% {
+        opacity: 0;
+    }
 
-    transform: rotate(35deg);
+    15% {
+        opacity: .7;
+        background: white;
+    }
 
-  }
+    25% {
+        opacity: 0;
+    }
 
-  to {
+    45% {
+        opacity: .3;
+        background: white;
+    }
 
-    transform: rotate(-15deg);
-
-  }
-
-}
-
-
-/* =====================================
-   GOTHAM
-===================================== */
-
-.gotham {
-
-  position: fixed;
-
-  bottom: 0;
-
-  left: 0;
-
-  width: 100%;
-
-  height: 260px;
-
-  z-index: -4;
-
-  display: flex;
-
-  align-items: flex-end;
-
-  justify-content: center;
-
-  gap: 3px;
+    100% {
+        opacity: 0;
+    }
 
 }
 
 
-.building {
+/* =========================================
+   BAT WORLD
+========================================= */
 
-  background:
+.bat-world {
 
-    repeating-linear-gradient(
-      90deg,
-      #030408 0px,
-      #030408 10px,
-      #080a0e 11px,
-      #030408 20px
-    );
+    position: fixed;
 
-  border-top: 2px solid #171922;
+    inset: 0;
 
-  position: relative;
+    perspective: 1000px;
 
-}
+    overflow: hidden;
 
+    pointer-events: none;
 
-.building::after {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 15px;
-
-  background:
-
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 18px,
-      rgba(245,197,24,.18) 19px,
-      transparent 23px
-    );
+    z-index: 2;
 
 }
 
-
-.b1 { width: 8%; height: 120px; }
-.b2 { width: 10%; height: 180px; }
-.b3 { width: 7%; height: 145px; }
-.b4 { width: 12%; height: 220px; }
-.b5 { width: 7%; height: 170px; }
-.b6 { width: 10%; height: 240px; }
-.b7 { width: 8%; height: 155px; }
-.b8 { width: 11%; height: 210px; }
-.b9 { width: 7%; height: 135px; }
-.b10 { width: 12%; height: 190px; }
-
-
-/* =====================================
-   FLYING BATS
-===================================== */
 
 .bat {
 
-  position: fixed;
+    position: absolute;
 
-  z-index: -1;
+    left: -100px;
 
-  font-size: 25px;
+    color: black;
 
-  opacity: .7;
+    filter:
+        drop-shadow(0 0 8px rgba(0,0,0,.9));
 
-  pointer-events: none;
+    opacity: .8;
 
 }
 
 
+/* =========================================
+   DIFFERENT BAT FLIGHTS
+========================================= */
+
 .bat1 {
 
-  left: -10%;
+    top: 10%;
 
-  top: 20%;
+    font-size: 30px;
 
-  animation: flyBat1 12s linear infinite;
+    animation:
+        fly1 8s linear infinite;
 
 }
 
 
 .bat2 {
 
-  left: -10%;
+    top: 25%;
 
-  top: 40%;
+    font-size: 55px;
 
-  animation: flyBat2 16s linear infinite;
+    animation:
+        fly2 11s linear infinite;
 
-  animation-delay: 2s;
+    animation-delay: 2s;
 
 }
 
 
 .bat3 {
 
-  left: -10%;
+    top: 40%;
 
-  top: 70%;
+    font-size: 25px;
 
-  animation: flyBat3 13s linear infinite;
+    animation:
+        fly3 7s linear infinite;
 
-  animation-delay: 4s;
+    animation-delay: 1s;
 
 }
 
 
 .bat4 {
 
-  left: -10%;
+    top: 60%;
 
-  top: 15%;
+    font-size: 70px;
 
-  animation: flyBat1 18s linear infinite;
+    animation:
+        fly1 13s linear infinite;
 
-  animation-delay: 7s;
+    animation-delay: 4s;
 
 }
 
 
 .bat5 {
 
-  left: -10%;
+    top: 75%;
 
-  top: 60%;
+    font-size: 35px;
 
-  animation: flyBat2 15s linear infinite;
+    animation:
+        fly2 9s linear infinite;
 
-  animation-delay: 3s;
+    animation-delay: 3s;
 
 }
 
 
 .bat6 {
 
-  left: -10%;
+    top: 15%;
 
-  top: 80%;
+    font-size: 80px;
 
-  animation: flyBat3 20s linear infinite;
+    animation:
+        fly3 15s linear infinite;
 
-  animation-delay: 6s;
+    animation-delay: 5s;
 
 }
 
 
 .bat7 {
 
-  left: -10%;
+    top: 85%;
 
-  top: 30%;
+    font-size: 50px;
 
-  animation: flyBat1 14s linear infinite;
-
-  animation-delay: 9s;
+    animation:
+        fly1 12s linear infinite;
 
 }
 
 
 .bat8 {
 
-  left: -10%;
+    top: 50%;
 
-  top: 50%;
+    font-size: 30px;
 
-  animation: flyBat2 19s linear infinite;
+    animation:
+        fly2 10s linear infinite;
 
-  animation-delay: 11s;
-
-}
-
-
-@keyframes flyBat1 {
-
-  0% {
-
-    transform:
-      translateX(0)
-      translateY(0)
-      rotate(0deg)
-      scale(.7);
-
-  }
-
-  50% {
-
-    transform:
-      translateX(55vw)
-      translateY(-100px)
-      rotate(15deg)
-      scale(1.3);
-
-  }
-
-  100% {
-
-    transform:
-      translateX(120vw)
-      translateY(50px)
-      rotate(-10deg)
-      scale(.8);
-
-  }
+    animation-delay: 6s;
 
 }
 
 
-@keyframes flyBat2 {
+.bat9 {
 
-  0% {
+    top: 5%;
 
-    transform: translateX(0) translateY(0);
+    font-size: 45px;
 
-  }
-
-  50% {
-
-    transform: translateX(60vw) translateY(120px) rotate(-20deg);
-
-  }
-
-  100% {
-
-    transform: translateX(120vw) translateY(-70px) rotate(15deg);
-
-  }
+    animation:
+        fly3 14s linear infinite;
 
 }
 
 
-@keyframes flyBat3 {
+.bat10 {
 
-  0% {
+    top: 35%;
 
-    transform: translateX(0) translateY(0) scale(.5);
+    font-size: 65px;
 
-  }
+    animation:
+        fly1 9s linear infinite;
 
-  50% {
-
-    transform: translateX(50vw) translateY(-150px) scale(1.5);
-
-  }
-
-  100% {
-
-    transform: translateX(120vw) translateY(0) scale(.7);
-
-  }
+    animation-delay: 2s;
 
 }
 
 
-/* =====================================
+.bat11 {
+
+    top: 68%;
+
+    font-size: 25px;
+
+    animation:
+        fly2 12s linear infinite;
+
+    animation-delay: 7s;
+
+}
+
+
+.bat12 {
+
+    top: 90%;
+
+    font-size: 40px;
+
+    animation:
+        fly3 11s linear infinite;
+
+    animation-delay: 4s;
+
+}
+
+
+/* =========================================
+   BAT FLIGHT ANIMATIONS
+========================================= */
+
+@keyframes fly1 {
+
+    0% {
+
+        transform:
+            translate3d(-150px,0,0)
+            rotate(-10deg)
+            scale(.3);
+
+        opacity: 0;
+
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    50% {
+
+        transform:
+            translate3d(50vw,-100px,300px)
+            rotate(10deg)
+            scale(1.5);
+
+    }
+
+    100% {
+
+        transform:
+            translate3d(120vw,80px,-200px)
+            rotate(-15deg)
+            scale(.3);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+@keyframes fly2 {
+
+    0% {
+
+        transform:
+            translate3d(-200px,100px,-300px)
+            rotate(15deg)
+            scale(.2);
+
+        opacity: 0;
+
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    60% {
+
+        transform:
+            translate3d(55vw,-120px,500px)
+            rotate(-20deg)
+            scale(2);
+
+    }
+
+    100% {
+
+        transform:
+            translate3d(120vw,100px,-400px)
+            rotate(20deg)
+            scale(.2);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+@keyframes fly3 {
+
+    0% {
+
+        transform:
+            translate3d(-150px,0,500px)
+            rotate(0)
+            scale(2);
+
+        opacity: 0;
+
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    60% {
+
+        transform:
+            translate3d(50vw,150px,-200px)
+            rotate(180deg)
+            scale(.4);
+
+    }
+
+    100% {
+
+        transform:
+            translate3d(120vw,-100px,300px)
+            rotate(360deg)
+            scale(1.5);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================
    BAT SIGNAL
-===================================== */
+========================================= */
 
 .bat-signal {
 
-  position: fixed;
+    position: fixed;
 
-  top: 35px;
+    top: 35px;
 
-  right: 35px;
+    right: 35px;
 
-  width: 120px;
+    width: 130px;
 
-  height: 120px;
+    height: 130px;
 
-  z-index: 2;
+    border-radius: 50%;
 
-  border-radius: 50%;
+    background:
 
-  background:
+        radial-gradient(
+            circle,
+            rgba(255,220,50,.45),
+            rgba(255,220,50,.12) 50%,
+            transparent 70%
+        );
 
-    radial-gradient(
-      circle,
-      rgba(255,220,60,.4),
-      rgba(255,220,60,.05) 55%,
-      transparent 70%
-    );
+    box-shadow:
 
-  animation: signalPulse 2s infinite alternate;
+        0 0 50px rgba(255,210,30,.4),
 
-}
+        0 0 120px rgba(255,210,30,.2);
 
+    z-index: 10;
 
-.signal-circle {
-
-  width: 100%;
-
-  height: 100%;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
+    animation:
+        signalPulse 2s infinite alternate;
 
 }
 
 
-.signal-logo {
+.signal {
 
-  font-size: 55px;
+    display: flex;
 
-  filter:
+    width: 100%;
 
-    drop-shadow(0 0 10px #ffd900)
+    height: 100%;
 
-    drop-shadow(0 0 30px #ffd900);
+    align-items: center;
 
-  animation: signalRotate 4s ease-in-out infinite alternate;
+    justify-content: center;
+
+    font-size: 60px;
+
+    filter:
+
+        drop-shadow(0 0 10px gold)
+
+        drop-shadow(0 0 30px gold);
 
 }
 
 
 @keyframes signalPulse {
 
-  from {
+    from {
+        transform: scale(.8);
+    }
 
-    transform: scale(.85);
-
-    opacity: .5;
-
-  }
-
-  to {
-
-    transform: scale(1.15);
-
-    opacity: 1;
-
-  }
+    to {
+        transform: scale(1.15);
+    }
 
 }
 
 
-@keyframes signalRotate {
+/* =========================================
+   OPENING
+========================================= */
 
-  from {
+#opening {
 
-    transform: rotate(-8deg);
+    position: fixed;
 
-  }
+    inset: 0;
 
-  to {
+    z-index: 50;
 
-    transform: rotate(8deg);
+    display: flex;
 
-  }
+    flex-direction: column;
 
-}
+    justify-content: center;
 
+    align-items: center;
 
-/* =====================================
-   MAIN CARD
-===================================== */
-
-.card {
-
-  position: relative;
-
-  width: min(800px, 94%);
-
-  margin: 70px auto;
-
-  padding: 55px 35px;
-
-  text-align: center;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      rgba(10,11,17,.96),
-      rgba(2,3,7,.97)
-    );
-
-  border: 1px solid rgba(245,197,24,.7);
-
-  border-radius: 4px;
-
-  box-shadow:
-
-    0 0 15px rgba(245,197,24,.15),
-
-    0 0 80px rgba(0,0,0,.9),
-
-    inset 0 0 60px rgba(245,197,24,.025);
-
-  overflow: hidden;
-
-  animation: cardEntrance 2s ease;
+    text-align: center;
 
 }
 
 
-.card::before {
+.gotham-text {
 
-  content: "";
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
-  position: absolute;
+    font-size:
+        clamp(70px,12vw,150px);
 
-  inset: 8px;
+    letter-spacing: 15px;
 
-  border: 1px solid rgba(245,197,24,.12);
+    color: #eee;
 
-  pointer-events: none;
+    text-shadow:
 
-}
+        0 0 10px #fff,
 
+        0 0 40px rgba(255,255,255,.5);
 
-.card::after {
-
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-
-  left: -100%;
-
-  width: 40%;
-
-  height: 100%;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.05),
-    transparent
-  );
-
-  transform: skewX(-20deg);
-
-  animation: scanCard 6s infinite;
+    animation:
+        titleFloat 3s ease-in-out infinite alternate;
 
 }
 
 
-@keyframes scanCard {
+@keyframes titleFloat {
 
-  0% {
+    from {
+        transform: translateY(0);
+    }
 
-    left: -100%;
-
-  }
-
-  50%,
-  100% {
-
-    left: 150%;
-
-  }
+    to {
+        transform: translateY(-15px);
+    }
 
 }
 
 
-@keyframes cardEntrance {
+.classified {
 
-  from {
+    margin-top: 25px;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color: #f5c518;
+
+}
+
+
+.warning {
+
+    margin-top: 20px;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #888;
+
+    animation:
+        warningBlink 1.5s infinite;
+
+}
+
+
+@keyframes warningBlink {
+
+    50% {
+        opacity: .2;
+    }
+
+}
+
+
+/* =========================================
+   FLY BUTTON
+========================================= */
+
+#flyButton {
+
+    position: relative;
+
+    margin-top: 45px;
+
+    padding: 22px 60px;
+
+    background: #f5c518;
+
+    border: 2px solid #f5c518;
+
+    color: #050505;
+
+    font-family:
+        'Orbitron',
+        sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    letter-spacing: 6px;
+
+    cursor: pointer;
+
+    box-shadow:
+
+        0 0 15px #f5c518,
+
+        0 0 60px rgba(245,197,24,.4);
+
+    transition: .3s;
+
+    overflow: hidden;
+
+}
+
+
+#flyButton:hover {
+
+    background: transparent;
+
+    color: #f5c518;
+
+    transform:
+        scale(1.12)
+        translateY(-5px);
+
+    box-shadow:
+
+        0 0 30px #f5c518,
+
+        0 0 100px rgba(245,197,24,.6);
+
+}
+
+
+#flyButton span {
+
+    margin: 0 12px;
+
+}
+
+
+/* =========================================
+   CINEMATIC DOORS
+========================================= */
+
+.door {
+
+    position: fixed;
+
+    top: 0;
+
+    width: 50%;
+
+    height: 100%;
+
+    z-index: 100;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #08090d,
+            #010205
+        );
+
+    transition:
+        transform 1.8s cubic-bezier(.8,0,.2,1);
+
+}
+
+
+.left-door {
+
+    left: 0;
+
+    border-right:
+        2px solid #f5c518;
+
+}
+
+
+.right-door {
+
+    right: 0;
+
+    border-left:
+        2px solid #f5c518;
+
+}
+
+
+/* =========================================
+   BIRTHDAY CARD
+========================================= */
+
+#birthdayCard {
+
+    position: relative;
+
+    z-index: 20;
+
+    width:
+        min(850px,94%);
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding:
+        70px 35px;
+
+    text-align: center;
 
     opacity: 0;
 
     transform:
-      translateY(100px)
-      scale(.85)
-      rotateX(15deg);
+        scale(.6)
+        rotateX(25deg);
 
-  }
+    transition:
+        1.5s ease;
 
-  to {
+    pointer-events: none;
+
+}
+
+
+body.opened {
+
+    overflow-y: auto;
+
+}
+
+
+body.opened #opening {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: 1s;
+
+}
+
+
+body.opened .left-door {
+
+    transform:
+        translateX(-100%);
+
+}
+
+
+body.opened .right-door {
+
+    transform:
+        translateX(100%);
+
+}
+
+
+body.opened #birthdayCard {
 
     opacity: 1;
 
     transform:
-      translateY(0)
-      scale(1)
-      rotateX(0);
+        scale(1)
+        rotateX(0);
 
-  }
-
-}
-
-
-/* =====================================
-   CLASSIFIED
-===================================== */
-
-.classified {
-
-  display: inline-block;
-
-  padding: 7px 15px;
-
-  border: 1px solid #f5c518;
-
-  color: #f5c518;
-
-  font-size: 9px;
-
-  letter-spacing: 4px;
-
-  margin-bottom: 20px;
-
-  animation: classifiedBlink 2s infinite;
+    pointer-events: auto;
 
 }
 
 
-@keyframes classifiedBlink {
+/* =========================================
+   CARD HEADER
+========================================= */
 
-  50% {
+.cardTop {
 
-    opacity: .3;
+    display: flex;
 
-  }
+    justify-content:
+        space-between;
 
-}
+    font-size: 8px;
 
+    letter-spacing: 3px;
 
-.topLine {
-
-  height: 1px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      #f5c518,
-      transparent
-    );
-
-  margin-bottom: 20px;
+    color: #777;
 
 }
 
 
-.intro {
+.cardTop span:last-child {
 
-  color: #999;
-
-  font-size: 10px;
-
-  letter-spacing: 5px;
+    color: #f5c518;
 
 }
 
 
-/* =====================================
-   TITLE
-===================================== */
+.bat-symbol {
+
+    margin-top: 35px;
+
+    font-size: 60px;
+
+    filter:
+
+        drop-shadow(0 0 15px #f5c518)
+
+        drop-shadow(0 0 40px #f5c518);
+
+    animation:
+        symbolPulse 2s infinite alternate;
+
+}
+
+
+@keyframes symbolPulse {
+
+    from {
+        transform: scale(.9);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+
+}
+
+
+.subtitle {
+
+    margin-top: 20px;
+
+    font-size: 9px;
+
+    letter-spacing: 6px;
+
+    color: #777;
+
+}
+
 
 h1 {
 
-  margin-top: 25px;
+    margin-top: 25px;
 
-  font-family: 'Bebas Neue', sans-serif;
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
-  line-height: .75;
+    font-size:
+        clamp(80px,15vw,150px);
 
-}
-
-
-.smallTitle {
-
-  display: block;
-
-  font-family: 'Orbitron', sans-serif;
-
-  font-size: 10px;
-
-  letter-spacing: 7px;
-
-  color: #777;
-
-  margin-bottom: 20px;
+    line-height: .75;
 
 }
 
 
-.happy {
+h1 span {
 
-  display: block;
+    display: block;
 
-  font-size: clamp(80px, 17vw, 150px);
-
-  letter-spacing: 5px;
-
-  color: #eee;
-
-  text-shadow:
-
-    0 0 5px #fff,
-
-    0 0 20px rgba(255,255,255,.3);
-
-}
-
-
-.birthday {
-
-  display: block;
-
-  font-size: clamp(75px, 15vw, 140px);
-
-  color: #f5c518;
-
-  letter-spacing: 8px;
-
-  text-shadow:
-
-    0 0 5px #f5c518,
-
-    0 0 20px #f5c518,
-
-    0 0 50px rgba(245,197,24,.5);
-
-  animation: birthdayGlow 2s infinite alternate;
-
-}
-
-
-@keyframes birthdayGlow {
-
-  from {
+    color: #f5c518;
 
     text-shadow:
-      0 0 5px #f5c518,
-      0 0 20px #f5c518;
 
-  }
+        0 0 10px #f5c518,
 
-  to {
-
-    text-shadow:
-      0 0 10px #f5c518,
-      0 0 35px #f5c518,
-      0 0 70px #f5c518;
-
-  }
+        0 0 40px #f5c518;
 
 }
 
 
-.bat-divider {
-
-  color: #f5c518;
-
-  margin: 25px 0;
-
-  letter-spacing: 5px;
-
-  opacity: .7;
-
-}
-
-
-/* =====================================
+/* =========================================
    PHOTO
-===================================== */
+========================================= */
 
-.photo-container {
+.photo-area {
 
-  position: relative;
+    margin: 50px auto;
 
-  width: 260px;
-
-  margin: 30px auto;
+    width: 260px;
 
 }
 
 
-.photo-glow {
+.photo-frame {
 
-  position: absolute;
+    position: relative;
 
-  inset: -30px;
+    width: 240px;
 
-  background:
+    height: 290px;
 
-    radial-gradient(
-      circle,
-      rgba(245,197,24,.25),
-      transparent 65%
-    );
+    margin: auto;
 
-  animation: photoGlow 2s infinite alternate;
+    padding: 7px;
 
-}
+    background: #050609;
 
+    border:
+        2px solid #f5c518;
 
-@keyframes photoGlow {
+    box-shadow:
 
-  from {
+        0 0 20px rgba(245,197,24,.5),
 
-    transform: scale(.8);
+        0 0 70px rgba(245,197,24,.2);
 
-    opacity: .5;
+    transform:
+        rotate(-2deg);
 
-  }
-
-  to {
-
-    transform: scale(1.2);
-
-    opacity: 1;
-
-  }
+    transition: .5s;
 
 }
 
 
-.photo-box {
+.photo-frame:hover {
 
-  position: relative;
+    transform:
+        rotate(0)
+        scale(1.07);
 
-  width: 240px;
+    box-shadow:
 
-  height: 280px;
+        0 0 35px #f5c518,
 
-  margin: auto;
-
-  padding: 7px;
-
-  background: #08090d;
-
-  border: 2px solid #f5c518;
-
-  transform: rotate(-2deg);
-
-  box-shadow:
-
-    0 0 15px rgba(245,197,24,.5),
-
-    0 0 60px rgba(245,197,24,.15);
-
-  transition: .5s;
+        0 0 100px rgba(245,197,24,.4);
 
 }
 
 
-.photo-box:hover {
+.photo-frame img {
 
-  transform:
-    rotate(0deg)
-    scale(1.06);
+    width: 100%;
 
-  box-shadow:
+    height: 100%;
 
-    0 0 25px #f5c518,
-
-    0 0 80px rgba(245,197,24,.4);
+    object-fit: cover;
 
 }
 
 
-.photo-box img {
+.photo-caption {
 
-  width: 100%;
+    margin-top: 15px;
 
-  height: 100%;
+    font-size: 8px;
 
-  object-fit: cover;
+    letter-spacing: 4px;
 
-  display: block;
-
-}
-
-
-.photo-label {
-
-  margin-top: 15px;
-
-  font-size: 8px;
-
-  letter-spacing: 4px;
-
-  color: #777;
+    color: #777;
 
 }
 
 
-/* =====================================
+/* =========================================
    NAME
-===================================== */
+========================================= */
 
-.toName {
+.name {
 
-  font-family: 'Bebas Neue', sans-serif;
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
-  font-size: 35px;
+    font-size: 35px;
 
-  letter-spacing: 4px;
-
-  margin: 25px 0;
-
-}
-
-
-.toName span {
-
-  display: block;
-
-  margin-top: 5px;
-
-  color: #f5c518;
-
-  font-size: 55px;
-
-  text-shadow: 0 0 20px rgba(245,197,24,.6);
+    letter-spacing: 5px;
 
 }
 
 
-/* =====================================
+.name span {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 60px;
+
+    color: #f5c518;
+
+    text-shadow:
+        0 0 20px #f5c518;
+
+}
+
+
+/* =========================================
    MESSAGE
-===================================== */
+========================================= */
 
-.messageBox {
+.message-container {
 
-  position: relative;
+    max-width: 700px;
 
-  max-width: 680px;
+    margin: 40px auto;
 
-  margin: 30px auto;
+    padding: 30px;
 
-  padding: 25px;
+    background:
+        rgba(0,0,0,.55);
 
-  border-left: 2px solid #f5c518;
+    border:
 
-  border-right: 2px solid #f5c518;
+        1px solid
+        rgba(245,197,24,.4);
 
-  background: rgba(255,255,255,.02);
-
-  text-align: left;
+    box-shadow:
+        inset 0 0 40px rgba(245,197,24,.03);
 
 }
 
 
-.messageHeader {
+.message-title {
 
-  color: #f5c518;
+    color: #f5c518;
 
-  font-size: 10px;
+    font-size: 10px;
 
-  letter-spacing: 3px;
+    letter-spacing: 4px;
 
-  margin-bottom: 20px;
-
-  text-align: center;
+    margin-bottom: 25px;
 
 }
 
 
 .message {
 
-  color: #ddd;
+    font-family: Arial, sans-serif;
 
-  line-height: 2;
+    font-size: 16px;
 
-  font-family: Arial, sans-serif;
+    line-height: 2;
 
-  font-size: 16px;
-
-  text-align: center;
+    color: #ddd;
 
 }
 
 
-/* =====================================
-   BUTTON
-===================================== */
+/* =========================================
+   SECRET
+========================================= */
 
-#batButton {
+.secret {
 
-  position: relative;
+    margin-top: 60px;
 
-  margin-top: 25px;
+    padding:
+        40px 20px;
 
-  padding: 18px 30px;
+    border-top:
+        1px solid #f5c518;
 
-  border: 2px solid #f5c518;
-
-  background: #f5c518;
-
-  color: #050505;
-
-  font-family: 'Orbitron', sans-serif;
-
-  font-size: 12px;
-
-  font-weight: 900;
-
-  letter-spacing: 2px;
-
-  cursor: pointer;
-
-  overflow: hidden;
-
-  transition: .3s;
+    border-bottom:
+        1px solid #f5c518;
 
 }
 
 
-#batButton::before {
+.secret-symbol {
 
-  content: "";
+    font-size: 55px;
 
-  position: absolute;
-
-  top: 0;
-
-  left: -100%;
-
-  width: 100%;
-
-  height: 100%;
-
-  background: rgba(255,255,255,.5);
-
-  transform: skewX(-25deg);
-
-  transition: .5s;
+    filter:
+        drop-shadow(0 0 20px #f5c518);
 
 }
 
 
-#batButton:hover::before {
+.secret h3 {
 
-  left: 120%;
+    margin-top: 20px;
 
-}
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
+    font-size: 45px;
 
-#batButton:hover {
+    letter-spacing: 3px;
 
-  color: #f5c518;
-
-  background: transparent;
-
-  box-shadow:
-
-    0 0 15px #f5c518,
-
-    0 0 50px rgba(245,197,24,.5);
-
-  transform: scale(1.05);
+    color: #f5c518;
 
 }
 
 
-#batButton span {
+.secret p {
 
-  margin: 0 10px;
+    max-width: 600px;
 
-}
+    margin:
+        20px auto;
 
+    line-height: 2;
 
-/* =====================================
-   SECRET MESSAGE
-===================================== */
-
-#secret {
-
-  display: none;
-
-  margin-top: 50px;
-
-  padding: 35px 20px;
-
-  border-top: 1px solid #f5c518;
-
-  border-bottom: 1px solid #f5c518;
-
-  animation: secretReveal 1.5s ease;
+    color: #ccc;
 
 }
 
 
-@keyframes secretReveal {
+.final-birthday {
 
-  from {
+    margin-top: 30px;
 
-    opacity: 0;
+    font-size: 28px;
 
-    transform: scale(.5);
+    color: #f5c518;
 
-    filter: blur(15px);
+    text-shadow:
 
-  }
+        0 0 10px #f5c518,
 
-  to {
-
-    opacity: 1;
-
-    transform: scale(1);
-
-    filter: blur(0);
-
-  }
+        0 0 30px #f5c518;
 
 }
 
 
-.secretBat {
+/* =========================================
+   CLOSE BUTTON
+========================================= */
 
-  font-size: 60px;
+#closeButton {
 
-  filter: drop-shadow(0 0 20px #f5c518);
+    margin-top: 50px;
 
-  animation: secretBat 1s infinite alternate;
+    padding: 15px 25px;
 
-}
+    border:
+        1px solid #555;
 
+    background:
+        transparent;
 
-@keyframes secretBat {
+    color: #777;
 
-  from {
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-    transform: scale(.9);
+    font-size: 10px;
 
-  }
+    letter-spacing: 3px;
 
-  to {
+    cursor: pointer;
 
-    transform: scale(1.15);
-
-  }
-
-}
-
-
-.secretLine {
-
-  height: 2px;
-
-  width: 100px;
-
-  background: #f5c518;
-
-  margin: 15px auto 25px;
-
-  box-shadow: 0 0 20px #f5c518;
+    transition: .3s;
 
 }
 
 
-#secret h2 {
+#closeButton:hover {
 
-  color: #f5c518;
+    border-color: #f5c518;
 
-  font-family: 'Bebas Neue', sans-serif;
+    color: #f5c518;
 
-  font-size: 45px;
-
-  letter-spacing: 3px;
-
-}
-
-
-#secret p {
-
-  margin: 20px auto;
-
-  max-width: 600px;
-
-  line-height: 2;
-
-  color: #ccc;
+    box-shadow:
+        0 0 20px rgba(245,197,24,.3);
 
 }
 
 
-.birthdayFinal {
-
-  margin-top: 25px;
-
-  font-size: 28px;
-
-  color: #f5c518;
-
-  text-shadow:
-
-    0 0 10px #f5c518,
-
-    0 0 30px #f5c518;
-
-  animation: finalGlow 1s infinite alternate;
-
-}
-
-
-@keyframes finalGlow {
-
-  from {
-
-    transform: scale(1);
-
-  }
-
-  to {
-
-    transform: scale(1.1);
-
-  }
-
-}
-
-
-.fireworks {
-
-  margin-top: 25px;
-
-  font-size: 30px;
-
-  color: #f5c518;
-
-  letter-spacing: 20px;
-
-  animation: fireworks 1s infinite alternate;
-
-}
-
-
-@keyframes fireworks {
-
-  from {
-
-    transform: scale(.8);
-
-    opacity: .3;
-
-  }
-
-  to {
-
-    transform: scale(1.2);
-
-    opacity: 1;
-
-  }
-
-}
-
-
-/* =====================================
+/* =========================================
    FOOTER
-===================================== */
+========================================= */
 
 footer {
 
-  margin-top: 45px;
+    margin-top: 50px;
 
-  padding-top: 20px;
+    padding-top: 20px;
 
-  border-top: 1px solid #222;
+    border-top: 1px solid #222;
 
-  font-size: 8px;
+    color: #555;
 
-  letter-spacing: 3px;
+    font-size: 8px;
 
-  color: #555;
+    letter-spacing: 3px;
 
 }
 
 
 footer span {
 
-  color: #f5c518;
+    color: #f5c518;
 
 }
 
 
-/* =====================================
-   FLASH EFFECT
-===================================== */
+/* =========================================
+   CLOSING
+========================================= */
 
-#flash {
+body.closing .left-door {
 
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 9998;
-
-  background: white;
-
-  pointer-events: none;
-
-  opacity: 0;
+    transform:
+        translateX(0);
 
 }
 
 
-#flash.active {
+body.closing .right-door {
 
-  animation: flashBang .6s ease;
+    transform:
+        translateX(0);
 
 }
 
 
-@keyframes flashBang {
-
-  0% {
+body.closing #birthdayCard {
 
     opacity: 0;
 
-  }
-
-  20% {
-
-    opacity: .9;
-
-  }
-
-  100% {
-
-    opacity: 0;
-
-  }
+    transform:
+        scale(.5)
+        rotateX(-25deg);
 
 }
 
 
-/* =====================================
-   SCREEN SHAKE
-===================================== */
+body.closing #opening {
 
-body.shake {
-
-  animation: shake .5s;
+    opacity: 1;
 
 }
 
 
-@keyframes shake {
-
-  0% { transform: translate(0); }
-
-  20% { transform: translate(-8px, 5px); }
-
-  40% { transform: translate(8px, -5px); }
-
-  60% { transform: translate(-5px, -3px); }
-
-  80% { transform: translate(5px, 3px); }
-
-  100% { transform: translate(0); }
-
-}
-
-
-/* =====================================
+/* =========================================
    MOBILE
-===================================== */
+========================================= */
 
-@media (max-width: 600px) {
+@media(max-width:600px) {
 
-  .introLogo {
+    .bat-signal {
 
-    font-size: 65px;
+        width: 70px;
 
-  }
+        height: 70px;
 
-  .introText {
+        top: 15px;
 
-    font-size: 35px;
+        right: 15px;
 
-    letter-spacing: 7px;
+    }
 
-  }
 
-  .bat-signal {
+    .signal {
 
-    width: 70px;
+        font-size: 32px;
 
-    height: 70px;
+    }
 
-    top: 15px;
 
-    right: 15px;
+    .gotham-text {
 
-  }
+        letter-spacing: 7px;
 
-  .signal-logo {
+    }
 
-    font-size: 30px;
 
-  }
+    #flyButton {
 
-  .card {
+        padding:
+            18px 35px;
 
-    margin: 40px auto;
+        font-size: 13px;
 
-    padding: 40px 18px;
+    }
 
-  }
 
-  .photo-box {
+    #birthdayCard {
 
-    width: 200px;
+        padding:
+            45px 18px;
 
-    height: 240px;
+    }
 
-  }
 
-  .message {
+    .photo-frame {
 
-    font-size: 14px;
+        width: 200px;
 
-    line-height: 1.8;
+        height: 245px;
 
-  }
+    }
 
-  .toName span {
 
-    font-size: 42px;
+    .name span {
 
-  }
+        font-size: 45px;
 
-  #secret h2 {
+    }
 
-    font-size: 32px;
 
-  }
+    .message {
+
+        font-size: 14px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .secret h3 {
+
+        font-size: 32px;
+
+    }
 
 }
