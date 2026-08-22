@@ -1,349 +1,77 @@
-/* =====================================
-   BATMAN BIRTHDAY SCRIPT
-===================================== */
+/* ==========================================
+   BATMAN BIRTHDAY EXPERIENCE
+========================================== */
 
 
-/* =====================================
-   ACTIVATE BAT-SIGNAL
-===================================== */
+/* ==========================================
+   ELEMENTS
+========================================== */
 
-function revealMessage() {
+const flyButton =
+    document.getElementById("flyButton");
 
-    const secret = document.getElementById("secret");
-    const flash = document.getElementById("flash");
-    const button = document.getElementById("batButton");
+const closeButton =
+    document.getElementById("closeButton");
 
-
-    // FLASH EFFECT
-    flash.classList.remove("active");
-
-    void flash.offsetWidth;
-
-    flash.classList.add("active");
+const lightning =
+    document.querySelector(".lightning");
 
 
-    // SCREEN SHAKE
-    document.body.classList.add("shake");
+/* ==========================================
+   FLY BUTTON
+========================================== */
 
-    setTimeout(() => {
-        document.body.classList.remove("shake");
-    }, 600);
+flyButton.addEventListener("click", () => {
 
+    /* Screen flash */
 
-    // CHANGE BUTTON TEXT
-    button.innerHTML = "🦇 BAT-SIGNAL ACTIVATED ⚡";
+    lightning.classList.remove("flash");
 
+    void lightning.offsetWidth;
 
-    // SHOW SECRET MESSAGE
-    secret.style.display = "block";
-
-
-    // SCROLL TO MESSAGE
-    setTimeout(() => {
-
-        secret.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
-    }, 300);
+    lightning.classList.add("flash");
 
 
-    // RELEASE EXTRA BATS
-    createExtraBats();
-}
+    /* Add cinematic opening */
+
+    document.body.classList.add("opened");
 
 
-/* =====================================
-   EXTRA FLYING BATS
-===================================== */
+    /* Create a swarm of bats */
 
-function createExtraBats() {
-
-    for (let i = 0; i < 20; i++) {
-
-        const bat = document.createElement("div");
-
-        bat.innerHTML = "🦇";
-
-        bat.style.position = "fixed";
-
-        bat.style.left = "-60px";
-
-        bat.style.top =
-            Math.random() * 100 + "vh";
-
-        bat.style.fontSize =
-            (15 + Math.random() * 35) + "px";
-
-        bat.style.zIndex = "999";
-
-        bat.style.pointerEvents = "none";
-
-        document.body.appendChild(bat);
+    createBatSwarm();
 
 
-        const duration =
-            2000 + Math.random() * 4000;
-
-
-        bat.animate(
-
-            [
-
-                {
-                    transform:
-                        "translateX(0) rotate(0deg) scale(.5)",
-                    opacity: 0
-                },
-
-                {
-                    transform:
-                        "translateX(50vw) translateY(-100px) rotate(180deg) scale(1.3)",
-                    opacity: 1
-                },
-
-                {
-                    transform:
-                        "translateX(120vw) translateY(100px) rotate(360deg) scale(.6)",
-                    opacity: 0
-                }
-
-            ],
-
-            {
-                duration: duration,
-                easing: "linear"
-            }
-
-        );
-
-
-        setTimeout(() => {
-
-            bat.remove();
-
-        }, duration);
-
-    }
-}
-
-
-/* =====================================
-   LIGHTNING
-===================================== */
-
-function lightningFlash() {
-
-    const lightning =
-        document.querySelector(".lightning");
-
-
-    lightning.style.background =
-        "rgba(255,255,255,.3)";
-
+    /* More bats after a short delay */
 
     setTimeout(() => {
 
-        lightning.style.background =
-            "transparent";
+        createBatSwarm();
 
-    }, 100);
+    }, 800);
 
 
-    setTimeout(() => {
-
-        lightning.style.background =
-            "rgba(255,255,255,.15)";
-
-    }, 170);
-
+    /* Scroll to birthday card */
 
     setTimeout(() => {
 
-        lightning.style.background =
-            "transparent";
+        document.getElementById("birthdayCard")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
 
-    }, 250);
-}
-
-
-/* RANDOM LIGHTNING */
-
-setInterval(() => {
-
-    if (Math.random() > 0.45) {
-
-        lightningFlash();
-
-    }
-
-}, 4000);
-
-
-/* =====================================
-   GOLDEN SPARKS
-===================================== */
-
-function createSpark() {
-
-    const spark =
-        document.createElement("div");
-
-
-    spark.innerHTML = "✦";
-
-
-    spark.style.position = "fixed";
-
-    spark.style.left =
-        Math.random() * 100 + "vw";
-
-    spark.style.top =
-        Math.random() * 100 + "vh";
-
-    spark.style.color = "#f5c518";
-
-    spark.style.fontSize =
-        (5 + Math.random() * 15) + "px";
-
-    spark.style.pointerEvents = "none";
-
-    spark.style.zIndex = "1";
-
-
-    document.body.appendChild(spark);
-
-
-    spark.animate(
-
-        [
-
-            {
-                opacity: 0,
-                transform: "scale(0)"
-            },
-
-            {
-                opacity: 1,
-                transform: "scale(1.5)"
-            },
-
-            {
-                opacity: 0,
-                transform: "scale(0)"
-            }
-
-        ],
-
-        {
-
-            duration:
-                1500 + Math.random() * 2000,
-
-            easing: "ease-in-out"
-
-        }
-
-    );
-
-
-    setTimeout(() => {
-
-        spark.remove();
-
-    }, 3500);
-
-}
-
-
-/* CREATE SPARKS */
-
-setInterval(createSpark, 350);
-
-
-/* =====================================
-   MOUSE PARALLAX
-===================================== */
-
-document.addEventListener("mousemove", (event) => {
-
-    const card =
-        document.querySelector(".card");
-
-
-    // Don't do the effect on mobile
-
-    if (window.innerWidth <= 700) {
-        return;
-    }
-
-
-    const x =
-        (event.clientX / window.innerWidth - 0.5) * 2;
-
-
-    const y =
-        (event.clientY / window.innerHeight - 0.5) * 2;
-
-
-    card.style.transform =
-        `perspective(1000px)
-         rotateY(${x * 2}deg)
-         rotateX(${y * -2}deg)`;
+    }, 1300);
 
 });
 
 
-/* RESET CARD */
+/* ==========================================
+   CREATE 3D BAT SWARM
+========================================== */
 
-document.addEventListener("mouseleave", () => {
+function createBatSwarm() {
 
-    const card =
-        document.querySelector(".card");
-
-
-    card.style.transform =
-        "perspective(1000px) rotateY(0deg) rotateX(0deg)";
-
-});
-
-
-/* =====================================
-   BAT-SIGNAL BUTTON EFFECT
-===================================== */
-
-const batButton =
-    document.getElementById("batButton");
-
-
-batButton.addEventListener("click", () => {
-
-    const signal =
-        document.querySelector(".bat-signal");
-
-
-    signal.style.animation =
-        "signalPulse .3s infinite alternate";
-
-
-    setTimeout(() => {
-
-        signal.style.animation =
-            "signalPulse 2s infinite alternate";
-
-    }, 1500);
-
-});
-
-
-/* =====================================
-   RANDOM BAT AMBIENCE
-===================================== */
-
-setInterval(() => {
-
-    if (Math.random() > 0.5) {
+    for (let i = 0; i < 30; i++) {
 
         const bat =
             document.createElement("div");
@@ -354,62 +82,165 @@ setInterval(() => {
 
         bat.style.position = "fixed";
 
-        bat.style.left = "-50px";
+        bat.style.left = "50%";
 
-        bat.style.top =
-            Math.random() * 90 + "vh";
+        bat.style.top = "50%";
+
+        bat.style.zIndex = "200";
+
+        bat.style.pointerEvents = "none";
+
 
         bat.style.fontSize =
-            (15 + Math.random() * 25) + "px";
-
-        bat.style.zIndex = "-1";
+            (15 + Math.random() * 45) + "px";
 
 
         document.body.appendChild(bat);
 
 
-        const animation =
-            bat.animate(
+        const directionX =
+            (Math.random() - 0.5) * 2500;
 
-                [
 
-                    {
-                        transform: "translateX(0)",
-                        opacity: 0
-                    },
+        const directionY =
+            (Math.random() - 0.5) * 1800;
 
-                    {
-                        transform:
-                            "translateX(50vw) translateY(-80px)",
-                        opacity: 1
-                    },
 
-                    {
-                        transform:
-                            "translateX(120vw) translateY(80px)",
-                        opacity: 0
-                    }
+        const directionZ =
+            Math.random() * 1000;
 
-                ],
+
+        const rotation =
+            Math.random() * 720;
+
+
+        const duration =
+            1200 + Math.random() * 1800;
+
+
+        bat.animate(
+
+            [
 
                 {
 
-                    duration:
-                        5000 + Math.random() * 5000,
+                    transform:
+                        "translate(-50%,-50%) " +
+                        "translate3d(0,0,0) " +
+                        "scale(.1) " +
+                        "rotate(0deg)",
 
-                    easing: "linear"
+                    opacity: 0
+
+                },
+
+                {
+
+                    transform:
+                        `translate(-50%,-50%)
+                         translate3d(
+                            ${directionX * .3}px,
+                            ${directionY * .3}px,
+                            ${directionZ * .2}px
+                         )
+                         scale(1)
+                         rotate(${rotation / 2}deg)`,
+
+                    opacity: 1
+
+                },
+
+                {
+
+                    transform:
+                        `translate(-50%,-50%)
+                         translate3d(
+                            ${directionX}px,
+                            ${directionY}px,
+                            ${directionZ}px
+                         )
+                         scale(.2)
+                         rotate(${rotation}deg)`,
+
+                    opacity: 0
 
                 }
 
-            );
+            ],
+
+            {
+
+                duration: duration,
+
+                easing: "cubic-bezier(.2,.8,.2,1)"
+
+            }
+
+        );
 
 
-        animation.onfinish = () => {
+        setTimeout(() => {
 
             bat.remove();
 
-        };
+        }, duration + 100);
 
     }
 
-}, 2500);
+}
+
+
+/* ==========================================
+   RANDOM LIGHTNING
+========================================== */
+
+function randomLightning() {
+
+    lightning.classList.remove("flash");
+
+    void lightning.offsetWidth;
+
+    lightning.classList.add("flash");
+
+}
+
+
+setInterval(() => {
+
+    if (Math.random() > .4) {
+
+        randomLightning();
+
+    }
+
+}, 5000);
+
+
+/* ==========================================
+   CLOSE TRANSMISSION
+========================================== */
+
+closeButton.addEventListener("click", () => {
+
+    document.body.classList.add("closing");
+
+
+    /* Create closing bat swarm */
+
+    createBatSwarm();
+
+
+    setTimeout(() => {
+
+        document.body.classList.remove("opened");
+
+        document.body.classList.remove("closing");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }, 1800);
+
+});
