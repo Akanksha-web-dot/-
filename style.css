@@ -1,3 +1,8 @@
+/* =====================================================
+   BATMAN BIRTHDAY CARD
+   style.css
+===================================================== */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,274 +15,330 @@ html {
 
 body {
     background: #000;
-    color: white;
-    font-family: Arial, sans-serif;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
+    min-height: 100vh;
 }
 
 
-/* =========================
+/* =====================================================
    BACKGROUND
-========================= */
+===================================================== */
 
 .background {
-
     position: fixed;
-
     inset: 0;
+    width: 100%;
+    height: 100%;
 
-    z-index: -10;
+    /* IMPORTANT: keep this at 0 */
+    z-index: 0;
 
     background-image:
         linear-gradient(
-            rgba(0,0,0,.45),
-            rgba(0,0,0,.75)
+            rgba(0, 0, 0, 0.20),
+            rgba(0, 0, 0, 0.72)
         ),
         url("gotham-bg.jpg");
 
     background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 
-    background-position: center;
-
-    animation: zoom 15s infinite alternate;
+    animation:
+        backgroundZoom
+        18s
+        ease-in-out
+        infinite
+        alternate;
 }
 
-@keyframes zoom {
+.background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
 
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 10%,
+            rgba(0, 0, 0, 0.25) 55%,
+            rgba(0, 0, 0, 0.80) 100%
+        );
+}
+
+@keyframes backgroundZoom {
     from {
         transform: scale(1);
     }
 
     to {
-        transform: scale(1.12);
+        transform: scale(1.08);
     }
 }
 
 
-/* =========================
+/* =====================================================
    BAT SIGNAL
-========================= */
+===================================================== */
 
 .bat-signal {
-
     position: fixed;
 
-    top: 25px;
+    top: 20px;
+    right: 20px;
 
-    right: 25px;
-
-    width: 100px;
-
-    height: 100px;
+    width: 90px;
+    height: 90px;
 
     border-radius: 50%;
 
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
-    font-size: 50px;
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 215, 0, 0.35),
+            rgba(255, 215, 0, 0.08),
+            transparent 70%
+        );
 
-    background: rgba(255,210,30,.12);
+    border: 1px solid rgba(255, 215, 0, 0.6);
 
     box-shadow:
-        0 0 30px gold,
-        0 0 80px rgba(255,200,0,.4);
+        0 0 20px gold,
+        0 0 60px rgba(255, 200, 0, 0.45),
+        0 0 100px rgba(255, 200, 0, 0.15);
 
     z-index: 30;
 
-    animation: signal 2s infinite alternate;
+    animation:
+        signalPulse
+        2s
+        ease-in-out
+        infinite
+        alternate;
 }
 
-@keyframes signal {
+.bat-signal span {
+    font-size: 45px;
 
+    filter:
+        drop-shadow(0 0 15px gold);
+}
+
+@keyframes signalPulse {
     from {
-        transform: scale(.8);
+        transform: scale(0.85);
+        opacity: 0.65;
     }
 
     to {
-        transform: scale(1.1);
+        transform: scale(1.10);
+        opacity: 1;
     }
 }
 
 
-/* =========================
-   BATS
-========================= */
+/* =====================================================
+   FLYING BATS
+===================================================== */
 
 .bats {
-
     position: fixed;
-
     inset: 0;
 
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
 
+    overflow: hidden;
     pointer-events: none;
 
-    z-index: 2;
-
+    z-index: 5;
 }
 
 .bats span {
-
     position: absolute;
 
-    left: -100px;
+    left: -120px;
 
     font-size: 35px;
 
-    animation: fly linear infinite;
+    opacity: 0;
 
+    filter:
+        drop-shadow(0 0 5px #000);
+
+    animation:
+        fly
+        linear
+        infinite;
 }
 
 
-/* different bats */
+/* Individual bats */
 
 .bats span:nth-child(1) {
-    top: 10%;
+    top: 8%;
+    font-size: 28px;
     animation-duration: 7s;
 }
 
 .bats span:nth-child(2) {
-    top: 20%;
+    top: 18%;
+    font-size: 42px;
     animation-duration: 10s;
     animation-delay: 2s;
 }
 
 .bats span:nth-child(3) {
-    top: 35%;
+    top: 30%;
+    font-size: 25px;
     animation-duration: 8s;
     animation-delay: 1s;
 }
 
 .bats span:nth-child(4) {
-    top: 50%;
+    top: 42%;
+    font-size: 40px;
     animation-duration: 12s;
     animation-delay: 3s;
 }
 
 .bats span:nth-child(5) {
-    top: 65%;
+    top: 55%;
+    font-size: 30px;
     animation-duration: 9s;
 }
 
 .bats span:nth-child(6) {
-    top: 75%;
+    top: 68%;
+    font-size: 45px;
     animation-duration: 11s;
     animation-delay: 2s;
 }
 
 .bats span:nth-child(7) {
-    top: 85%;
+    top: 80%;
+    font-size: 25px;
     animation-duration: 8s;
 }
 
 .bats span:nth-child(8) {
-    top: 15%;
-    animation-duration: 13s;
-}
-
-.bats span:nth-child(9) {
-    top: 45%;
-    animation-duration: 10s;
-}
-
-.bats span:nth-child(10) {
     top: 90%;
-    animation-duration: 14s;
+    font-size: 35px;
+    animation-duration: 13s;
 }
 
 
 @keyframes fly {
 
     0% {
-
         transform:
             translateX(-150px)
             translateY(0)
-            scale(.3)
+            scale(0.3)
             rotate(-20deg);
 
         opacity: 0;
-
     }
 
-    15% {
+    10% {
         opacity: 1;
     }
 
-    50% {
-
+    45% {
         transform:
-            translateX(50vw)
-            translateY(-100px)
-            scale(2)
-            rotate(15deg);
+            translateX(40vw)
+            translateY(-120px)
+            scale(1.8)
+            rotate(20deg);
+    }
 
+    70% {
+        transform:
+            translateX(70vw)
+            translateY(80px)
+            scale(1)
+            rotate(-10deg);
     }
 
     100% {
-
         transform:
-            translateX(110vw)
-            translateY(100px)
-            scale(.4)
-            rotate(-20deg);
+            translateX(115vw)
+            translateY(-50px)
+            scale(0.3)
+            rotate(20deg);
 
         opacity: 0;
-
     }
-
 }
 
 
-/* =========================
-   OPENING
-========================= */
+/* =====================================================
+   OPENING SCREEN
+===================================================== */
 
 #opening {
-
     position: fixed;
-
     inset: 0;
 
     z-index: 20;
 
     display: flex;
-
     flex-direction: column;
 
     justify-content: center;
-
     align-items: center;
 
     text-align: center;
 
-    transition: 1s;
+    padding: 20px;
+
+    transition:
+        opacity 0.8s ease,
+        transform 1s ease;
 }
 
 
-.gotham {
+/* =====================================================
+   GOTHAM CITY TITLE
+===================================================== */
 
+.gotham {
     font-size:
-        clamp(60px, 12vw, 150px);
+        clamp(
+            45px,
+            12vw,
+            150px
+        );
 
     font-weight: 900;
 
-    letter-spacing: 12px;
+    letter-spacing:
+        clamp(
+            4px,
+            1.5vw,
+            14px
+        );
+
+    color: #fff;
 
     text-shadow:
-        0 0 15px white,
-        0 0 50px rgba(255,255,255,.5);
+        0 0 15px #fff,
+        0 0 50px rgba(255, 255, 255, 0.5);
 
-    animation: floating 3s infinite alternate;
+    animation:
+        floating
+        3s
+        infinite
+        alternate;
 }
 
 @keyframes floating {
-
     from {
         transform: translateY(0);
     }
@@ -288,37 +349,64 @@ body {
 }
 
 
-.classified {
+/* =====================================================
+   CLASSIFIED TEXT
+===================================================== */
 
-    margin-top: 20px;
+.classified {
+    margin-top: 25px;
 
     color: #f5c518;
 
     letter-spacing: 5px;
 
-    font-size: 12px;
+    font-size: 11px;
+
+    text-shadow:
+        0 0 10px rgba(245, 197, 24, 0.7);
+
+    animation:
+        blink
+        1.5s
+        infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
 }
 
 
-/* =========================
+/* =====================================================
    FLY BUTTON
-========================= */
+===================================================== */
 
 #flyButton {
-
     margin-top: 45px;
 
-    padding: 20px 55px;
+    padding:
+        18px 55px;
 
-    border: 2px solid #f5c518;
+    min-width: 210px;
 
-    background: #f5c518;
+    border:
+        2px solid #f5c518;
+
+    background:
+        #f5c518;
 
     color: #000;
 
-    font-size: 18px;
+    font-size: 17px;
 
-    font-weight: bold;
+    font-weight: 900;
 
     letter-spacing: 5px;
 
@@ -326,169 +414,246 @@ body {
 
     box-shadow:
         0 0 20px #f5c518,
-        0 0 70px rgba(245,197,24,.4);
+        0 0 70px rgba(245, 197, 24, 0.4);
 
-    transition: .3s;
-
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
 }
 
-
 #flyButton:hover {
-
-    transform:
-        scale(1.15);
+    transform: scale(1.15);
 
     background: #000;
 
     color: #f5c518;
 
+    box-shadow:
+        0 0 25px #f5c518,
+        0 0 80px rgba(245, 197, 24, 0.6);
+}
+
+#flyButton:active {
+    transform: scale(0.95);
+}
+
+#flyButton:disabled {
+    cursor: default;
 }
 
 
-/* =========================
-   DOORS
-========================= */
+/* =====================================================
+   BATMAN DOORS
+===================================================== */
 
 .door {
-
     position: fixed;
 
     top: 0;
 
     width: 50%;
-
     height: 100%;
 
-    background: #030405;
+    background:
+        linear-gradient(
+            90deg,
+            #010101,
+            #090909,
+            #010101
+        );
 
-    z-index: 40;
+    z-index: 50;
 
     transition:
-        transform 1.5s
-        cubic-bezier(.8,0,.2,1);
-
+        transform
+        1.5s
+        cubic-bezier(
+            0.77,
+            0,
+            0.18,
+            1
+        );
 }
+
+
+/* Gold glowing line on doors */
+
+.door::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 100%;
+    height: 2px;
+
+    background: #f5c518;
+
+    box-shadow:
+        0 0 15px #f5c518,
+        0 0 35px rgba(245, 197, 24, 0.6);
+}
+
 
 .left {
     left: 0;
-    border-right: 2px solid #f5c518;
+
+    border-right:
+        2px solid #f5c518;
 }
 
 .right {
     right: 0;
-    border-left: 2px solid #f5c518;
+
+    border-left:
+        2px solid #f5c518;
 }
 
 
-/* =========================
-   OPEN STATE
-========================= */
+/* =====================================================
+   OPEN DOORS
+===================================================== */
 
 body.open .left {
-
     transform:
         translateX(-100%);
-
 }
 
 body.open .right {
-
     transform:
         translateX(100%);
-
 }
 
 body.open #opening {
-
     opacity: 0;
 
-    pointer-events: none;
+    transform:
+        scale(1.2);
 
+    pointer-events: none;
 }
 
 
-/* =========================
-   CARD
-========================= */
+/* =====================================================
+   BIRTHDAY CARD
+===================================================== */
 
 #card {
+    position: relative;
+
+    z-index: 10;
 
     width:
-        min(850px, 94%);
+        min(
+            850px,
+            94%
+        );
 
     margin:
         0 auto;
 
     padding:
-        50px 20px;
+        50px 20px 100px;
 
     text-align: center;
 
     opacity: 0;
 
     transform:
-        scale(.7);
+        scale(0.7)
+        translateY(30px);
 
     transition:
-        1.5s;
+        opacity 1.3s ease,
+        transform 1.3s ease;
 
     pointer-events: none;
-
 }
 
 
-body.open #card {
+/* Reveal card */
 
+body.open {
+    overflow-y: auto;
+}
+
+body.open #card {
     opacity: 1;
 
     transform:
-        scale(1);
+        scale(1)
+        translateY(0);
 
     pointer-events: auto;
-
 }
 
 
-/* =========================
-   CARD CONTENT
-========================= */
+/* =====================================================
+   CARD TOP
+===================================================== */
 
 .top {
-
     display: flex;
 
     justify-content:
         space-between;
 
+    gap: 15px;
+
     color: #777;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 3px;
-
 }
 
 .top span {
-
     color: #f5c518;
-
 }
 
 
+/* =====================================================
+   BIG BAT
+===================================================== */
+
 .big-bat {
+    margin-top: 30px;
 
     font-size: 65px;
-
-    margin-top: 30px;
 
     filter:
         drop-shadow(0 0 20px gold);
 
+    animation:
+        batPulse
+        2s
+        infinite
+        alternate;
+}
+
+@keyframes batPulse {
+
+    from {
+        transform:
+            scale(0.9)
+            rotate(-3deg);
+    }
+
+    to {
+        transform:
+            scale(1.1)
+            rotate(3deg);
+    }
 }
 
 
-.present {
+/* =====================================================
+   PRESENT
+===================================================== */
 
+.present {
     color: #777;
 
     font-size: 10px;
@@ -496,153 +661,262 @@ body.open #card {
     letter-spacing: 5px;
 
     margin-top: 15px;
-
 }
 
 
+/* =====================================================
+   HAPPY BIRTHDAY
+===================================================== */
+
 h1 {
-
     font-size:
-        clamp(70px, 13vw, 140px);
+        clamp(
+            55px,
+            13vw,
+            140px
+        );
 
-    line-height: .8;
+    line-height: 0.8;
 
     margin-top: 30px;
 
+    font-weight: 900;
 }
 
-
 h1 span {
-
     display: block;
+
+    margin-top: 10px;
 
     color: #f5c518;
 
     text-shadow:
         0 0 15px #f5c518,
-        0 0 40px #f5c518;
+        0 0 40px #f5c518,
+        0 0 80px rgba(245, 197, 24, 0.5);
 
+    animation:
+        goldGlow
+        2s
+        infinite
+        alternate;
+}
+
+@keyframes goldGlow {
+
+    from {
+        filter:
+            brightness(0.9);
+    }
+
+    to {
+        filter:
+            brightness(1.3);
+    }
 }
 
 
-/* =========================
-   FULL PHOTO
-========================= */
+/* =====================================================
+   PHOTO
+   FULL PHOTO - NO CROPPING
+===================================================== */
 
 .photo {
-
     width:
-        min(90vw, 550px);
+        min(
+            90vw,
+            600px
+        );
 
     margin:
-        50px auto;
+        55px auto;
 
     padding: 8px;
 
-    border: 2px solid #f5c518;
+    background:
+        rgba(0, 0, 0, 0.88);
 
-    background: #050505;
+    border:
+        2px solid #f5c518;
 
     box-shadow:
-        0 0 25px rgba(245,197,24,.6),
-        0 0 80px rgba(245,197,24,.2);
+        0 0 25px
+        rgba(245, 197, 24, 0.7),
 
+        0 0 80px
+        rgba(245, 197, 24, 0.2);
+}
+
+
+/* Gold scan line */
+
+.photo {
+    position: relative;
+    overflow: hidden;
+}
+
+.photo::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    height: 3px;
+
+    background:
+        rgba(245, 197, 24, 0.8);
+
+    box-shadow:
+        0 0 15px #f5c518;
+
+    animation:
+        scan
+        4s
+        linear
+        infinite;
+}
+
+@keyframes scan {
+
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: 100%;
+    }
+
+    100% {
+        top: 0;
+    }
 }
 
 
 .photo img {
-
     display: block;
 
     width: 100%;
 
     height: auto;
 
-    max-height: 70vh;
+    max-height: 75vh;
 
     object-fit: contain;
 
+    object-position: center;
 }
 
 
-/* =========================
+/* =====================================================
    NAME
-========================= */
+===================================================== */
 
 h2 {
-
     font-size: 30px;
 
     letter-spacing: 5px;
-
 }
 
-
 h2 span {
-
     display: block;
 
     margin-top: 10px;
 
-    font-size: 55px;
+    font-size:
+        clamp(
+            40px,
+            8vw,
+            55px
+        );
 
     color: #f5c518;
 
+    text-shadow:
+        0 0 20px
+        rgba(245, 197, 24, 0.6);
 }
 
 
-/* =========================
+/* =====================================================
    MESSAGE
-========================= */
+===================================================== */
 
 .message {
-
     max-width: 700px;
 
-    margin: 40px auto;
+    margin:
+        45px auto;
 
-    padding: 30px;
+    padding:
+        30px 25px;
 
     background:
-        rgba(0,0,0,.65);
+        rgba(0, 0, 0, 0.72);
 
     border:
-        1px solid rgba(245,197,24,.5);
+        1px solid
+        rgba(245, 197, 24, 0.5);
 
+    box-shadow:
+        0 0 30px
+        rgba(0, 0, 0, 0.5);
+
+    position: relative;
+}
+
+
+/* Gold line */
+
+.message::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #f5c518,
+            transparent
+        );
 }
 
 
 .message h3 {
-
     color: #f5c518;
 
     letter-spacing: 3px;
 
     margin-bottom: 25px;
-
 }
 
 
 .message p {
-
     font-size: 16px;
 
     line-height: 2;
 
     color: #ddd;
-
 }
 
 
-/* =========================
-   SECRET
-========================= */
+/* =====================================================
+   SECRET MESSAGE
+===================================================== */
 
 .secret {
+    margin-top: 55px;
 
-    margin-top: 50px;
-
-    padding: 40px 20px;
+    padding:
+        40px 20px;
 
     border-top:
         1px solid #f5c518;
@@ -650,60 +924,56 @@ h2 span {
     border-bottom:
         1px solid #f5c518;
 
+    background:
+        rgba(0, 0, 0, 0.45);
 }
-
 
 .secret div {
-
     font-size: 50px;
 
+    filter:
+        drop-shadow(0 0 12px gold);
 }
-
 
 .secret h3 {
-
     color: #f5c518;
 
-    font-size: 30px;
+    font-size: 28px;
 
-    margin: 20px 0;
-
+    margin:
+        20px 0;
 }
 
-
 .secret p {
-
     line-height: 2;
 
     color: #ccc;
-
 }
 
-
 .secret h4 {
-
     color: #f5c518;
 
     font-size: 25px;
 
     margin-top: 25px;
-
 }
 
 
-/* =========================
-   CLOSE
-========================= */
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
 
 #closeButton {
-
     margin-top: 50px;
 
-    padding: 15px 30px;
+    padding:
+        15px 30px;
 
-    background: transparent;
+    background:
+        transparent;
 
-    border: 1px solid #777;
+    border:
+        1px solid #777;
 
     color: #777;
 
@@ -711,24 +981,27 @@ h2 span {
 
     letter-spacing: 3px;
 
+    transition:
+        0.3s;
 }
-
 
 #closeButton:hover {
-
     color: #f5c518;
 
-    border-color: #f5c518;
+    border-color:
+        #f5c518;
 
+    box-shadow:
+        0 0 15px
+        rgba(245, 197, 24, 0.4);
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer {
-
     margin-top: 50px;
 
     color: #555;
@@ -736,48 +1009,101 @@ footer {
     font-size: 9px;
 
     letter-spacing: 3px;
-
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
-@media(max-width:600px) {
-
-    .gotham {
-
-        letter-spacing: 5px;
-
-    }
+@media (max-width: 600px) {
 
     .bat-signal {
-
         width: 65px;
-
         height: 65px;
 
-        font-size: 30px;
+        top: 15px;
+        right: 15px;
+    }
 
+    .bat-signal span {
+        font-size: 30px;
+    }
+
+    .gotham {
+        letter-spacing: 5px;
+    }
+
+    .classified {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    #flyButton {
+        min-width: 190px;
+
+        padding:
+            17px 35px;
+
+        font-size: 15px;
+    }
+
+    .top {
+        font-size: 7px;
+        letter-spacing: 2px;
+    }
+
+    .big-bat {
+        font-size: 50px;
     }
 
     .photo {
-
         width: 94vw;
+    }
 
+    .photo img {
+        max-height: 70vh;
+    }
+
+    h2 {
+        font-size: 25px;
     }
 
     h2 span {
-
         font-size: 40px;
+    }
 
+    .message {
+        padding:
+            25px 18px;
     }
 
     .message p {
-
         font-size: 14px;
-
+        line-height: 1.9;
     }
 
+    .secret h3 {
+        font-size: 21px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .gotham {
+        font-size: 42px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 span {
+        font-size: 35px;
+    }
 }
