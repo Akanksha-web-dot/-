@@ -1,40 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;600;700;900&display=swap');
-
-
-/* =========================================
-   RESET
-========================================= */
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-
 
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
-
-    min-height: 100vh;
-
-    overflow: hidden;
-
     background: #000;
-
     color: white;
-
-    font-family: 'Orbitron', sans-serif;
-
+    font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
 
-/* =========================================
-   BACKGROUND IMAGE
-========================================= */
+/* =========================
+   BACKGROUND
+========================= */
 
 .background {
 
@@ -45,163 +29,89 @@ body {
     z-index: -10;
 
     background-image:
-
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.75)
+        ),
         url("gotham-bg.jpg");
 
     background-size: cover;
 
     background-position: center;
 
-    transform: scale(1.08);
-
-    animation:
-        backgroundZoom 20s ease-in-out infinite alternate;
-
+    animation: zoom 15s infinite alternate;
 }
 
-
-@keyframes backgroundZoom {
+@keyframes zoom {
 
     from {
-        transform: scale(1.05);
+        transform: scale(1);
     }
 
     to {
-        transform: scale(1.18);
+        transform: scale(1.12);
     }
-
 }
 
 
-.dark-overlay {
+/* =========================
+   BAT SIGNAL
+========================= */
+
+.bat-signal {
 
     position: fixed;
 
-    inset: 0;
+    top: 25px;
 
-    z-index: -9;
+    right: 25px;
 
-    background:
+    width: 100px;
 
-        radial-gradient(
-            circle at center,
-            transparent 5%,
-            rgba(0,0,0,.45) 50%,
-            rgba(0,0,0,.9) 100%
-        );
+    height: 100px;
 
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 50px;
+
+    background: rgba(255,210,30,.12);
+
+    box-shadow:
+        0 0 30px gold,
+        0 0 80px rgba(255,200,0,.4);
+
+    z-index: 30;
+
+    animation: signal 2s infinite alternate;
 }
 
+@keyframes signal {
 
-/* =========================================
-   RAIN
-========================================= */
-
-.rain {
-
-    position: fixed;
-
-    inset: -100%;
-
-    z-index: -5;
-
-    opacity: .35;
-
-    background-image:
-
-        repeating-linear-gradient(
-            110deg,
-            transparent 0px,
-            transparent 10px,
-            rgba(180,190,200,.35) 11px,
-            transparent 12px
-        );
-
-    background-size: 90px 90px;
-
-    animation:
-        rainMove .7s linear infinite;
-
-}
-
-
-@keyframes rainMove {
+    from {
+        transform: scale(.8);
+    }
 
     to {
-
-        transform:
-            translate(90px,180px);
-
+        transform: scale(1.1);
     }
-
 }
 
 
-/* =========================================
-   LIGHTNING
-========================================= */
+/* =========================
+   BATS
+========================= */
 
-.lightning {
+.bats {
 
     position: fixed;
 
     inset: 0;
-
-    z-index: 20;
-
-    pointer-events: none;
-
-    opacity: 0;
-
-}
-
-
-.lightning.flash {
-
-    animation:
-        lightningFlash .5s ease;
-
-}
-
-
-@keyframes lightningFlash {
-
-    0% {
-        opacity: 0;
-    }
-
-    15% {
-        opacity: .7;
-        background: white;
-    }
-
-    25% {
-        opacity: 0;
-    }
-
-    45% {
-        opacity: .3;
-        background: white;
-    }
-
-    100% {
-        opacity: 0;
-    }
-
-}
-
-
-/* =========================================
-   BAT WORLD
-========================================= */
-
-.bat-world {
-
-    position: fixed;
-
-    inset: 0;
-
-    perspective: 1000px;
 
     overflow: hidden;
 
@@ -211,225 +121,111 @@ body {
 
 }
 
-
-.bat {
+.bats span {
 
     position: absolute;
 
     left: -100px;
 
-    color: black;
-
-    filter:
-        drop-shadow(0 0 8px rgba(0,0,0,.9));
-
-    opacity: .8;
-
-}
-
-
-/* =========================================
-   DIFFERENT BAT FLIGHTS
-========================================= */
-
-.bat1 {
-
-    top: 10%;
-
-    font-size: 30px;
-
-    animation:
-        fly1 8s linear infinite;
-
-}
-
-
-.bat2 {
-
-    top: 25%;
-
-    font-size: 55px;
-
-    animation:
-        fly2 11s linear infinite;
-
-    animation-delay: 2s;
-
-}
-
-
-.bat3 {
-
-    top: 40%;
-
-    font-size: 25px;
-
-    animation:
-        fly3 7s linear infinite;
-
-    animation-delay: 1s;
-
-}
-
-
-.bat4 {
-
-    top: 60%;
-
-    font-size: 70px;
-
-    animation:
-        fly1 13s linear infinite;
-
-    animation-delay: 4s;
-
-}
-
-
-.bat5 {
-
-    top: 75%;
-
     font-size: 35px;
 
-    animation:
-        fly2 9s linear infinite;
-
-    animation-delay: 3s;
+    animation: fly linear infinite;
 
 }
 
 
-.bat6 {
+/* different bats */
 
-    top: 15%;
-
-    font-size: 80px;
-
-    animation:
-        fly3 15s linear infinite;
-
-    animation-delay: 5s;
-
+.bats span:nth-child(1) {
+    top: 10%;
+    animation-duration: 7s;
 }
 
-
-.bat7 {
-
-    top: 85%;
-
-    font-size: 50px;
-
-    animation:
-        fly1 12s linear infinite;
-
-}
-
-
-.bat8 {
-
-    top: 50%;
-
-    font-size: 30px;
-
-    animation:
-        fly2 10s linear infinite;
-
-    animation-delay: 6s;
-
-}
-
-
-.bat9 {
-
-    top: 5%;
-
-    font-size: 45px;
-
-    animation:
-        fly3 14s linear infinite;
-
-}
-
-
-.bat10 {
-
-    top: 35%;
-
-    font-size: 65px;
-
-    animation:
-        fly1 9s linear infinite;
-
+.bats span:nth-child(2) {
+    top: 20%;
+    animation-duration: 10s;
     animation-delay: 2s;
-
 }
 
-
-.bat11 {
-
-    top: 68%;
-
-    font-size: 25px;
-
-    animation:
-        fly2 12s linear infinite;
-
-    animation-delay: 7s;
-
+.bats span:nth-child(3) {
+    top: 35%;
+    animation-duration: 8s;
+    animation-delay: 1s;
 }
 
+.bats span:nth-child(4) {
+    top: 50%;
+    animation-duration: 12s;
+    animation-delay: 3s;
+}
 
-.bat12 {
+.bats span:nth-child(5) {
+    top: 65%;
+    animation-duration: 9s;
+}
 
+.bats span:nth-child(6) {
+    top: 75%;
+    animation-duration: 11s;
+    animation-delay: 2s;
+}
+
+.bats span:nth-child(7) {
+    top: 85%;
+    animation-duration: 8s;
+}
+
+.bats span:nth-child(8) {
+    top: 15%;
+    animation-duration: 13s;
+}
+
+.bats span:nth-child(9) {
+    top: 45%;
+    animation-duration: 10s;
+}
+
+.bats span:nth-child(10) {
     top: 90%;
-
-    font-size: 40px;
-
-    animation:
-        fly3 11s linear infinite;
-
-    animation-delay: 4s;
-
+    animation-duration: 14s;
 }
 
 
-/* =========================================
-   BAT FLIGHT ANIMATIONS
-========================================= */
-
-@keyframes fly1 {
+@keyframes fly {
 
     0% {
 
         transform:
-            translate3d(-150px,0,0)
-            rotate(-10deg)
-            scale(.3);
+            translateX(-150px)
+            translateY(0)
+            scale(.3)
+            rotate(-20deg);
 
         opacity: 0;
 
     }
 
     15% {
-        opacity: .8;
+        opacity: 1;
     }
 
     50% {
 
         transform:
-            translate3d(50vw,-100px,300px)
-            rotate(10deg)
-            scale(1.5);
+            translateX(50vw)
+            translateY(-100px)
+            scale(2)
+            rotate(15deg);
 
     }
 
     100% {
 
         transform:
-            translate3d(120vw,80px,-200px)
-            rotate(-15deg)
-            scale(.3);
+            translateX(110vw)
+            translateY(100px)
+            scale(.4)
+            rotate(-20deg);
 
         opacity: 0;
 
@@ -438,166 +234,9 @@ body {
 }
 
 
-@keyframes fly2 {
-
-    0% {
-
-        transform:
-            translate3d(-200px,100px,-300px)
-            rotate(15deg)
-            scale(.2);
-
-        opacity: 0;
-
-    }
-
-    30% {
-        opacity: 1;
-    }
-
-    60% {
-
-        transform:
-            translate3d(55vw,-120px,500px)
-            rotate(-20deg)
-            scale(2);
-
-    }
-
-    100% {
-
-        transform:
-            translate3d(120vw,100px,-400px)
-            rotate(20deg)
-            scale(.2);
-
-        opacity: 0;
-
-    }
-
-}
-
-
-@keyframes fly3 {
-
-    0% {
-
-        transform:
-            translate3d(-150px,0,500px)
-            rotate(0)
-            scale(2);
-
-        opacity: 0;
-
-    }
-
-    30% {
-        opacity: 1;
-    }
-
-    60% {
-
-        transform:
-            translate3d(50vw,150px,-200px)
-            rotate(180deg)
-            scale(.4);
-
-    }
-
-    100% {
-
-        transform:
-            translate3d(120vw,-100px,300px)
-            rotate(360deg)
-            scale(1.5);
-
-        opacity: 0;
-
-    }
-
-}
-
-
-/* =========================================
-   BAT SIGNAL
-========================================= */
-
-.bat-signal {
-
-    position: fixed;
-
-    top: 35px;
-
-    right: 35px;
-
-    width: 130px;
-
-    height: 130px;
-
-    border-radius: 50%;
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(255,220,50,.45),
-            rgba(255,220,50,.12) 50%,
-            transparent 70%
-        );
-
-    box-shadow:
-
-        0 0 50px rgba(255,210,30,.4),
-
-        0 0 120px rgba(255,210,30,.2);
-
-    z-index: 10;
-
-    animation:
-        signalPulse 2s infinite alternate;
-
-}
-
-
-.signal {
-
-    display: flex;
-
-    width: 100%;
-
-    height: 100%;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 60px;
-
-    filter:
-
-        drop-shadow(0 0 10px gold)
-
-        drop-shadow(0 0 30px gold);
-
-}
-
-
-@keyframes signalPulse {
-
-    from {
-        transform: scale(.8);
-    }
-
-    to {
-        transform: scale(1.15);
-    }
-
-}
-
-
-/* =========================================
+/* =========================
    OPENING
-========================================= */
+========================= */
 
 #opening {
 
@@ -605,7 +244,7 @@ body {
 
     inset: 0;
 
-    z-index: 50;
+    z-index: 20;
 
     display: flex;
 
@@ -617,35 +256,27 @@ body {
 
     text-align: center;
 
+    transition: 1s;
 }
 
 
-.gotham-text {
-
-    font-family:
-        'Bebas Neue',
-        sans-serif;
+.gotham {
 
     font-size:
-        clamp(70px,12vw,150px);
+        clamp(60px, 12vw, 150px);
 
-    letter-spacing: 15px;
+    font-weight: 900;
 
-    color: #eee;
+    letter-spacing: 12px;
 
     text-shadow:
+        0 0 15px white,
+        0 0 50px rgba(255,255,255,.5);
 
-        0 0 10px #fff,
-
-        0 0 40px rgba(255,255,255,.5);
-
-    animation:
-        titleFloat 3s ease-in-out infinite alternate;
-
+    animation: floating 3s infinite alternate;
 }
 
-
-@keyframes titleFloat {
+@keyframes floating {
 
     from {
         transform: translateY(0);
@@ -654,120 +285,69 @@ body {
     to {
         transform: translateY(-15px);
     }
-
 }
 
 
 .classified {
 
-    margin-top: 25px;
-
-    font-size: 11px;
-
-    letter-spacing: 5px;
+    margin-top: 20px;
 
     color: #f5c518;
 
+    letter-spacing: 5px;
+
+    font-size: 12px;
 }
 
 
-.warning {
-
-    margin-top: 20px;
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
-    color: #888;
-
-    animation:
-        warningBlink 1.5s infinite;
-
-}
-
-
-@keyframes warningBlink {
-
-    50% {
-        opacity: .2;
-    }
-
-}
-
-
-/* =========================================
+/* =========================
    FLY BUTTON
-========================================= */
+========================= */
 
 #flyButton {
 
-    position: relative;
-
     margin-top: 45px;
 
-    padding: 22px 60px;
-
-    background: #f5c518;
+    padding: 20px 55px;
 
     border: 2px solid #f5c518;
 
-    color: #050505;
+    background: #f5c518;
 
-    font-family:
-        'Orbitron',
-        sans-serif;
+    color: #000;
 
-    font-size: 16px;
+    font-size: 18px;
 
-    font-weight: 900;
+    font-weight: bold;
 
-    letter-spacing: 6px;
+    letter-spacing: 5px;
 
     cursor: pointer;
 
     box-shadow:
-
-        0 0 15px #f5c518,
-
-        0 0 60px rgba(245,197,24,.4);
+        0 0 20px #f5c518,
+        0 0 70px rgba(245,197,24,.4);
 
     transition: .3s;
-
-    overflow: hidden;
 
 }
 
 
 #flyButton:hover {
 
-    background: transparent;
+    transform:
+        scale(1.15);
+
+    background: #000;
 
     color: #f5c518;
 
-    transform:
-        scale(1.12)
-        translateY(-5px);
-
-    box-shadow:
-
-        0 0 30px #f5c518,
-
-        0 0 100px rgba(245,197,24,.6);
-
 }
 
 
-#flyButton span {
-
-    margin: 0 12px;
-
-}
-
-
-/* =========================================
-   CINEMATIC DOORS
-========================================= */
+/* =========================
+   DOORS
+========================= */
 
 .door {
 
@@ -779,208 +359,155 @@ body {
 
     height: 100%;
 
-    z-index: 100;
+    background: #030405;
 
-    background:
-
-        linear-gradient(
-            135deg,
-            #08090d,
-            #010205
-        );
+    z-index: 40;
 
     transition:
-        transform 1.8s cubic-bezier(.8,0,.2,1);
+        transform 1.5s
+        cubic-bezier(.8,0,.2,1);
 
 }
 
-
-.left-door {
-
+.left {
     left: 0;
-
-    border-right:
-        2px solid #f5c518;
-
+    border-right: 2px solid #f5c518;
 }
 
-
-.right-door {
-
+.right {
     right: 0;
-
-    border-left:
-        2px solid #f5c518;
-
+    border-left: 2px solid #f5c518;
 }
 
 
-/* =========================================
-   BIRTHDAY CARD
-========================================= */
+/* =========================
+   OPEN STATE
+========================= */
 
-#birthdayCard {
-
-    position: relative;
-
-    z-index: 20;
-
-    width:
-        min(850px,94%);
-
-    min-height: 100vh;
-
-    margin: auto;
-
-    padding:
-        70px 35px;
-
-    text-align: center;
-
-    opacity: 0;
-
-    transform:
-        scale(.6)
-        rotateX(25deg);
-
-    transition:
-        1.5s ease;
-
-    pointer-events: none;
-
-}
-
-
-body.opened {
-
-    overflow-y: auto;
-
-}
-
-
-body.opened #opening {
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition: 1s;
-
-}
-
-
-body.opened .left-door {
+body.open .left {
 
     transform:
         translateX(-100%);
 
 }
 
-
-body.opened .right-door {
+body.open .right {
 
     transform:
         translateX(100%);
 
 }
 
+body.open #opening {
 
-body.opened #birthdayCard {
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+#card {
+
+    width:
+        min(850px, 94%);
+
+    margin:
+        0 auto;
+
+    padding:
+        50px 20px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform:
+        scale(.7);
+
+    transition:
+        1.5s;
+
+    pointer-events: none;
+
+}
+
+
+body.open #card {
 
     opacity: 1;
 
     transform:
-        scale(1)
-        rotateX(0);
+        scale(1);
 
     pointer-events: auto;
 
 }
 
 
-/* =========================================
-   CARD HEADER
-========================================= */
+/* =========================
+   CARD CONTENT
+========================= */
 
-.cardTop {
+.top {
 
     display: flex;
 
     justify-content:
         space-between;
 
-    font-size: 8px;
+    color: #777;
+
+    font-size: 10px;
 
     letter-spacing: 3px;
 
-    color: #777;
-
 }
 
-
-.cardTop span:last-child {
+.top span {
 
     color: #f5c518;
 
 }
 
 
-.bat-symbol {
+.big-bat {
 
-    margin-top: 35px;
+    font-size: 65px;
 
-    font-size: 60px;
+    margin-top: 30px;
 
     filter:
-
-        drop-shadow(0 0 15px #f5c518)
-
-        drop-shadow(0 0 40px #f5c518);
-
-    animation:
-        symbolPulse 2s infinite alternate;
+        drop-shadow(0 0 20px gold);
 
 }
 
 
-@keyframes symbolPulse {
-
-    from {
-        transform: scale(.9);
-    }
-
-    to {
-        transform: scale(1.1);
-    }
-
-}
-
-
-.subtitle {
-
-    margin-top: 20px;
-
-    font-size: 9px;
-
-    letter-spacing: 6px;
+.present {
 
     color: #777;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    margin-top: 15px;
 
 }
 
 
 h1 {
 
-    margin-top: 25px;
-
-    font-family:
-        'Bebas Neue',
-        sans-serif;
-
     font-size:
-        clamp(80px,15vw,150px);
+        clamp(70px, 13vw, 140px);
 
-    line-height: .75;
+    line-height: .8;
+
+    margin-top: 30px;
 
 }
 
@@ -992,135 +519,83 @@ h1 span {
     color: #f5c518;
 
     text-shadow:
-
-        0 0 10px #f5c518,
-
+        0 0 15px #f5c518,
         0 0 40px #f5c518;
 
 }
 
 
-/* =========================================
-   PHOTO
-========================================= */
+/* =========================
+   FULL PHOTO
+========================= */
 
-.photo-area {
+.photo {
 
-    margin: 50px auto;
+    width:
+        min(90vw, 550px);
 
-    width: 260px;
+    margin:
+        50px auto;
 
-}
+    padding: 8px;
 
+    border: 2px solid #f5c518;
 
-.photo-frame {
-
-    position: relative;
-
-    width: 240px;
-
-    height: 290px;
-
-    margin: auto;
-
-    padding: 7px;
-
-    background: #050609;
-
-    border:
-        2px solid #f5c518;
+    background: #050505;
 
     box-shadow:
-
-        0 0 20px rgba(245,197,24,.5),
-
-        0 0 70px rgba(245,197,24,.2);
-
-    transform:
-        rotate(-2deg);
-
-    transition: .5s;
+        0 0 25px rgba(245,197,24,.6),
+        0 0 80px rgba(245,197,24,.2);
 
 }
 
 
-.photo-frame:hover {
+.photo img {
 
-    transform:
-        rotate(0)
-        scale(1.07);
-
-    box-shadow:
-
-        0 0 35px #f5c518,
-
-        0 0 100px rgba(245,197,24,.4);
-
-}
-
-
-.photo-frame img {
+    display: block;
 
     width: 100%;
 
-    height: 100%;
+    height: auto;
 
-    object-fit: cover;
+    max-height: 70vh;
 
-}
-
-
-.photo-caption {
-
-    margin-top: 15px;
-
-    font-size: 8px;
-
-    letter-spacing: 4px;
-
-    color: #777;
+    object-fit: contain;
 
 }
 
 
-/* =========================================
+/* =========================
    NAME
-========================================= */
+========================= */
 
-.name {
+h2 {
 
-    font-family:
-        'Bebas Neue',
-        sans-serif;
-
-    font-size: 35px;
+    font-size: 30px;
 
     letter-spacing: 5px;
 
 }
 
 
-.name span {
+h2 span {
 
     display: block;
 
-    margin-top: 8px;
+    margin-top: 10px;
 
-    font-size: 60px;
+    font-size: 55px;
 
     color: #f5c518;
-
-    text-shadow:
-        0 0 20px #f5c518;
 
 }
 
 
-/* =========================================
+/* =========================
    MESSAGE
-========================================= */
+========================= */
 
-.message-container {
+.message {
 
     max-width: 700px;
 
@@ -1129,35 +604,26 @@ h1 span {
     padding: 30px;
 
     background:
-        rgba(0,0,0,.55);
+        rgba(0,0,0,.65);
 
     border:
-
-        1px solid
-        rgba(245,197,24,.4);
-
-    box-shadow:
-        inset 0 0 40px rgba(245,197,24,.03);
+        1px solid rgba(245,197,24,.5);
 
 }
 
 
-.message-title {
+.message h3 {
 
     color: #f5c518;
 
-    font-size: 10px;
-
-    letter-spacing: 4px;
+    letter-spacing: 3px;
 
     margin-bottom: 25px;
 
 }
 
 
-.message {
-
-    font-family: Arial, sans-serif;
+.message p {
 
     font-size: 16px;
 
@@ -1168,16 +634,15 @@ h1 span {
 }
 
 
-/* =========================================
+/* =========================
    SECRET
-========================================= */
+========================= */
 
 .secret {
 
-    margin-top: 60px;
+    margin-top: 50px;
 
-    padding:
-        40px 20px;
+    padding: 40px 20px;
 
     border-top:
         1px solid #f5c518;
@@ -1188,39 +653,25 @@ h1 span {
 }
 
 
-.secret-symbol {
+.secret div {
 
-    font-size: 55px;
-
-    filter:
-        drop-shadow(0 0 20px #f5c518);
+    font-size: 50px;
 
 }
 
 
 .secret h3 {
 
-    margin-top: 20px;
-
-    font-family:
-        'Bebas Neue',
-        sans-serif;
-
-    font-size: 45px;
-
-    letter-spacing: 3px;
-
     color: #f5c518;
+
+    font-size: 30px;
+
+    margin: 20px 0;
 
 }
 
 
 .secret p {
-
-    max-width: 600px;
-
-    margin:
-        20px auto;
 
     line-height: 2;
 
@@ -1229,214 +680,104 @@ h1 span {
 }
 
 
-.final-birthday {
-
-    margin-top: 30px;
-
-    font-size: 28px;
+.secret h4 {
 
     color: #f5c518;
 
-    text-shadow:
+    font-size: 25px;
 
-        0 0 10px #f5c518,
-
-        0 0 30px #f5c518;
+    margin-top: 25px;
 
 }
 
 
-/* =========================================
-   CLOSE BUTTON
-========================================= */
+/* =========================
+   CLOSE
+========================= */
 
 #closeButton {
 
     margin-top: 50px;
 
-    padding: 15px 25px;
+    padding: 15px 30px;
 
-    border:
-        1px solid #555;
+    background: transparent;
 
-    background:
-        transparent;
+    border: 1px solid #777;
 
     color: #777;
 
-    font-family:
-        'Orbitron',
-        sans-serif;
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
     cursor: pointer;
 
-    transition: .3s;
+    letter-spacing: 3px;
 
 }
 
 
 #closeButton:hover {
 
-    border-color: #f5c518;
-
     color: #f5c518;
 
-    box-shadow:
-        0 0 20px rgba(245,197,24,.3);
+    border-color: #f5c518;
 
 }
 
 
-/* =========================================
+/* =========================
    FOOTER
-========================================= */
+========================= */
 
 footer {
 
     margin-top: 50px;
 
-    padding-top: 20px;
-
-    border-top: 1px solid #222;
-
     color: #555;
 
-    font-size: 8px;
+    font-size: 9px;
 
     letter-spacing: 3px;
 
 }
 
 
-footer span {
-
-    color: #f5c518;
-
-}
-
-
-/* =========================================
-   CLOSING
-========================================= */
-
-body.closing .left-door {
-
-    transform:
-        translateX(0);
-
-}
-
-
-body.closing .right-door {
-
-    transform:
-        translateX(0);
-
-}
-
-
-body.closing #birthdayCard {
-
-    opacity: 0;
-
-    transform:
-        scale(.5)
-        rotateX(-25deg);
-
-}
-
-
-body.closing #opening {
-
-    opacity: 1;
-
-}
-
-
-/* =========================================
+/* =========================
    MOBILE
-========================================= */
+========================= */
 
 @media(max-width:600px) {
 
+    .gotham {
+
+        letter-spacing: 5px;
+
+    }
+
     .bat-signal {
 
-        width: 70px;
+        width: 65px;
 
-        height: 70px;
+        height: 65px;
 
-        top: 15px;
-
-        right: 15px;
+        font-size: 30px;
 
     }
 
+    .photo {
 
-    .signal {
-
-        font-size: 32px;
-
-    }
-
-
-    .gotham-text {
-
-        letter-spacing: 7px;
+        width: 94vw;
 
     }
 
+    h2 span {
 
-    #flyButton {
-
-        padding:
-            18px 35px;
-
-        font-size: 13px;
+        font-size: 40px;
 
     }
 
-
-    #birthdayCard {
-
-        padding:
-            45px 18px;
-
-    }
-
-
-    .photo-frame {
-
-        width: 200px;
-
-        height: 245px;
-
-    }
-
-
-    .name span {
-
-        font-size: 45px;
-
-    }
-
-
-    .message {
+    .message p {
 
         font-size: 14px;
 
-        line-height: 1.8;
-
     }
 
-
-    .secret h3 {
-
-        font-size: 32px;
-
-    }
-
-}
+}\
