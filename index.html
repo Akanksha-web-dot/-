@@ -1,281 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>🦇 Gotham Birthday Transmission</title>
+    <title>Gotham Birthday 🦇</title>
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- =========================
-       OPENING SCREEN
-  ========================== -->
+    <!-- =================================
+         BACKGROUND
+    ================================== -->
 
-  <div id="introScreen">
+    <div class="background"></div>
 
-    <div class="introLogo">🦇</div>
+    <div class="dark-overlay"></div>
 
-    <div class="introText">
-      GOTHAM CITY
-    </div>
+    <div class="rain"></div>
 
-    <div class="loadingText">
-      INITIALIZING BAT-SIGNAL...
-    </div>
-
-    <div class="loadingBar">
-      <div class="loadingProgress"></div>
-    </div>
-
-  </div>
+    <div class="lightning"></div>
 
 
-  <!-- =========================
-       BACKGROUND
-  ========================== -->
+    <!-- =================================
+         3D BAT WORLD
+    ================================== -->
 
-  <div class="sky"></div>
+    <div class="bat-world">
 
-  <div class="moon"></div>
-
-  <div class="cloud cloud1"></div>
-  <div class="cloud cloud2"></div>
-  <div class="cloud cloud3"></div>
-
-  <div class="lightning"></div>
-
-  <div class="rain"></div>
-
-  <div class="searchlight searchlight1"></div>
-  <div class="searchlight searchlight2"></div>
-
-
-  <!-- =========================
-       GOTHAM SKYLINE
-  ========================== -->
-
-  <div class="gotham">
-
-    <div class="building b1"></div>
-    <div class="building b2"></div>
-    <div class="building b3"></div>
-    <div class="building b4"></div>
-    <div class="building b5"></div>
-    <div class="building b6"></div>
-    <div class="building b7"></div>
-    <div class="building b8"></div>
-    <div class="building b9"></div>
-    <div class="building b10"></div>
-
-  </div>
-
-
-  <!-- =========================
-       FLYING BATS
-  ========================== -->
-
-  <div class="bat bat1">🦇</div>
-  <div class="bat bat2">🦇</div>
-  <div class="bat bat3">🦇</div>
-  <div class="bat bat4">🦇</div>
-  <div class="bat bat5">🦇</div>
-  <div class="bat bat6">🦇</div>
-  <div class="bat bat7">🦇</div>
-  <div class="bat bat8">🦇</div>
-
-
-  <!-- =========================
-       BAT SIGNAL
-  ========================== -->
-
-  <div class="bat-signal">
-
-    <div class="signal-circle">
-
-      <div class="signal-logo">
-        🦇
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       MAIN CONTENT
-  ========================== -->
-
-  <main class="card">
-
-    <div class="classified">
-      ⚠ CLASSIFIED TRANSMISSION ⚠
-    </div>
-
-    <div class="topLine"></div>
-
-    <p class="intro">
-      GOTHAM CITY • BAT-SIGNAL ONLINE
-    </p>
-
-
-    <!-- MAIN TITLE -->
-
-    <h1>
-
-      <span class="smallTitle">
-        THE DARK KNIGHT PRESENTS
-      </span>
-
-      <span class="happy">
-        HAPPY
-      </span>
-
-      <span class="birthday">
-        BIRTHDAY
-      </span>
-
-    </h1>
-
-
-    <div class="bat-divider">
-      ━━━━━ 🦇 ━━━━━
-    </div>
-
-
-    <!-- PHOTO -->
-
-    <div class="photo-container">
-
-      <div class="photo-glow"></div>
-
-      <div class="photo-box">
-
-        <!-- YOUR PHOTO -->
-        <img src="birthday.jpeg" alt="Birthday Photo">
-
-      </div>
-
-      <div class="photo-label">
-        GOTHAM FILE #BIRTHDAY
-      </div>
+        <div class="bat bat1">🦇</div>
+        <div class="bat bat2">🦇</div>
+        <div class="bat bat3">🦇</div>
+        <div class="bat bat4">🦇</div>
+        <div class="bat bat5">🦇</div>
+        <div class="bat bat6">🦇</div>
+        <div class="bat bat7">🦇</div>
+        <div class="bat bat8">🦇</div>
+        <div class="bat bat9">🦇</div>
+        <div class="bat bat10">🦇</div>
+        <div class="bat bat11">🦇</div>
+        <div class="bat bat12">🦇</div>
 
     </div>
 
 
-    <!-- NAME -->
+    <!-- =================================
+         BAT SIGNAL
+    ================================== -->
 
-    <h2 class="toName">
-      TO
-      <span>BHAIIII🐼</span>
-    </h2>
+    <div class="bat-signal">
 
-
-    <!-- MESSAGE -->
-
-    <div class="messageBox">
-
-      <div class="messageHeader">
-        🦇 BAT-COMPUTER MESSAGE
-      </div>
-
-      <p class="message">
-
-        Tonight, Gotham has a special mission...
-        <br><br>
-
-        🎂 It's your birthday!
-        <br>
-
-        HAPPY BIRTHDAY TO THE ANNOYING PERSON 🫶🏻🫠I MET ONLINE AND YET IT IS REMAINED AS ONLINE🙃..
-        BE HAPPY AND HEALTHY ALWAYS! ..KEEP SMILING AND LAUGHING AS U ALWAYS DO ...AND YES KUCH BHI HO U R FREE TO SHARE THINGS WITH ME AS U KNOW !
-        HAVE A BLAST !🐼🥳...
-
-      </p>
+        <div class="signal">
+            🦇
+        </div>
 
     </div>
 
 
-    <!-- BAT SIGNAL BUTTON -->
+    <!-- =================================
+         OPENING SCREEN
+    ================================== -->
 
-    <button onclick="revealMessage()" id="batButton">
+    <section id="opening">
 
-      <span>🦇</span>
+        <div class="gotham-text">
+            GOTHAM CITY
+        </div>
 
-      ACTIVATE BAT-SIGNAL
+        <div class="classified">
+            INCOMING TRANSMISSION
+        </div>
 
-      <span>⚡</span>
+        <div class="warning">
+            ⚠ BAT-SIGNAL DETECTED ⚠
+        </div>
 
-    </button>
+        <button id="flyButton">
+
+            <span>🦇</span>
+
+            FLY
+
+            <span>⚡</span>
+
+        </button>
+
+    </section>
 
 
-    <!-- SECRET MESSAGE -->
+    <!-- =================================
+         CINEMATIC DOORS
+    ================================== -->
 
-    <div id="secret">
+    <div class="door left-door"></div>
 
-      <div class="secretBat">
-        🦇
-      </div>
+    <div class="door right-door"></div>
 
-      <div class="secretLine"></div>
 
-      <h2>
-        THE DARK KNIGHT'S MESSAGE
-      </h2>
+    <!-- =================================
+         BIRTHDAY CARD
+    ================================== -->
 
-      <p>
-        No matter how dark the night gets,
-        always remember that you're capable of amazing things.
-        Keep shining. Keep fighting. Keep smiling. 🦇
-      </p>
+    <main id="birthdayCard">
 
-      <div class="birthdayFinal">
-        HAPPY BIRTHDAY 🐼! 🎂
-      </div>
+        <div class="cardTop">
 
-      <div class="fireworks">
-        ✦ ✧ ✦ ✧ ✦
-      </div>
+            <span>
+                GOTHAM CITY
+            </span>
+
+            <span>
+                CLASSIFIED
+            </span>
+
+        </div>
+
+
+        <div class="bat-symbol">
+            🦇
+        </div>
+
+
+        <p class="subtitle">
+            THE DARK KNIGHT PRESENTS
+        </p>
+
+
+        <h1>
+
+            HAPPY
+
+            <span>
+                BIRTHDAY
+            </span>
+
+        </h1>
+
+
+        <!-- =================================
+             PHOTO
+        ================================== -->
+
+        <div class="photo-area">
+
+            <div class="photo-glow"></div>
+
+            <div class="photo-frame">
+
+                <img
+                    src="birthday.jpeg"
+                    alt="Birthday Photo"
+                >
+
+            </div>
+
+            <div class="photo-caption">
+                GOTHAM FILE • #BIRTHDAY
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             NAME
+        ================================== -->
+
+        <h2 class="name">
+
+            TO
+
+            <span>
+                BHAIIII🐼
+            </span>
+
+        </h2>
+
+
+        <!-- =================================
+             MESSAGE
+        ================================== -->
+
+        <div class="message-container">
+
+            <div class="message-title">
+                🦇 BAT-COMPUTER MESSAGE
+            </div>
+
+            <p class="message">
+
+                Tonight, Gotham has a special mission...
+                <br><br>
+
+                🎂 It's your birthday!
+                <br>
+
+                HAPPY BIRTHDAY TO THE ANNOYING PERSON 🫶🏻🫠I MET ONLINE AND YET IT IS REMAINED AS ONLINE🙃..
+                BE HAPPY AND HEALTHY ALWAYS! ..KEEP SMILING AND LAUGHING AS U ALWAYS DO ...AND YES KUCH BHI HO U R FREE TO SHARE THINGS WITH ME AS U KNOW !
+                HAVE A BLAST !🐼🥳...
+
+            </p>
+
+        </div>
+
+
+        <!-- =================================
+             SECRET MESSAGE
+        ================================== -->
+
+        <div class="secret">
+
+            <div class="secret-symbol">
+                🦇
+            </div>
+
+            <h3>
+                THE DARK KNIGHT'S MESSAGE
+            </h3>
+
+            <p>
+
+                No matter how dark the night gets,
+                always remember that you're capable
+                of amazing things.
+
+                <br><br>
+
+                Keep shining.
+                Keep fighting.
+                Keep smiling. 🦇
+
+            </p>
+
+            <div class="final-birthday">
+                HAPPY BIRTHDAY 🐼! 🎂
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             CLOSE BUTTON
+        ================================== -->
+
+        <button id="closeButton">
+
+            CLOSE TRANSMISSION
+
+            🦇
+
+        </button>
+
+
+        <footer>
+
+            GOTHAM CITY
+
+            <span>•</span>
+
+            BAT-SIGNAL ONLINE
+
+            <span>•</span>
+
+            MISSION COMPLETE
+
+        </footer>
+
+    </main>
+
+
+    <!-- =================================
+         FINAL BAT SIGNAL
+    ================================== -->
+
+    <div id="finalSignal">
+
+        <div>
+            🦇
+        </div>
 
     </div>
 
 
-    <!-- FOOTER -->
+    <!-- =================================
+         JAVASCRIPT
+    ================================== -->
 
-    <footer>
-
-      <span>GOTHAM CITY</span>
-
-      • BAT-SIGNAL ONLINE •
-
-      <span>MISSION COMPLETE</span>
-
-    </footer>
-
-  </main>
-
-
-  <!-- FLASH EFFECT -->
-
-  <div id="flash"></div>
-
-
-  <!-- AUDIO OPTIONAL
-       Put a file called batman.mp3 in your repo
-       and remove the comments if you want music.
-  -->
-
-  <!--
-  <audio id="bgMusic" loop>
-    <source src="batman.mp3" type="audio/mpeg">
-  </audio>
-  -->
-
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
