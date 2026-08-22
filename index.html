@@ -1,203 +1,1000 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>🦇 Gotham Birthday</title>
+<title>Gotham Birthday 🦇</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#000;
+    color:white;
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+
+/* =========================
+   GOTHAM BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.8)
+        ),
+        url("gotham-bg.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    animation:bgZoom 15s infinite alternate;
+}
+
+@keyframes bgZoom{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.12);
+    }
+}
+
+
+/* =========================
+   BAT SIGNAL
+========================= */
+
+.batSignal{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    width:100px;
+    height:100px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:50px;
+
+    background:rgba(255,210,0,.12);
+
+    box-shadow:
+        0 0 30px gold,
+        0 0 80px rgba(255,200,0,.4);
+
+    z-index:20;
+
+    animation:pulse 2s infinite alternate;
+}
+
+@keyframes pulse{
+
+    from{
+        transform:scale(.85);
+    }
+
+    to{
+        transform:scale(1.1);
+    }
+}
+
+
+/* =========================
+   FLYING BATS
+========================= */
+
+.bats{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:5;
+}
+
+.bats span{
+
+    position:absolute;
+    left:-100px;
+
+    font-size:35px;
+
+    animation:fly linear infinite;
+
+}
+
+.bats span:nth-child(1){
+    top:10%;
+    animation-duration:7s;
+}
+
+.bats span:nth-child(2){
+    top:20%;
+    animation-duration:10s;
+    animation-delay:2s;
+}
+
+.bats span:nth-child(3){
+    top:35%;
+    animation-duration:8s;
+}
+
+.bats span:nth-child(4){
+    top:50%;
+    animation-duration:12s;
+    animation-delay:2s;
+}
+
+.bats span:nth-child(5){
+    top:65%;
+    animation-duration:9s;
+}
+
+.bats span:nth-child(6){
+    top:80%;
+    animation-duration:11s;
+    animation-delay:3s;
+}
+
+.bats span:nth-child(7){
+    top:15%;
+    animation-duration:13s;
+}
+
+.bats span:nth-child(8){
+    top:45%;
+    animation-duration:10s;
+}
+
+@keyframes fly{
+
+    0%{
+
+        transform:
+            translateX(-150px)
+            translateY(0)
+            scale(.3)
+            rotate(-20deg);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    50%{
+
+        transform:
+            translateX(50vw)
+            translateY(-120px)
+            scale(2)
+            rotate(20deg);
+
+    }
+
+    100%{
+
+        transform:
+            translateX(110vw)
+            translateY(100px)
+            scale(.3)
+            rotate(-20deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   OPENING SCREEN
+========================= */
+
+#opening{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:10;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    transition:1s;
+}
+
+.gotham{
+
+    font-size:
+        clamp(55px,12vw,150px);
+
+    font-weight:900;
+
+    letter-spacing:10px;
+
+    text-shadow:
+        0 0 15px white,
+        0 0 50px rgba(255,255,255,.5);
+
+    animation:float 3s infinite alternate;
+}
+
+@keyframes float{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-15px);
+    }
+}
+
+.classified{
+
+    margin-top:20px;
+
+    color:#f5c518;
+
+    letter-spacing:5px;
+
+    font-size:11px;
+}
+
+
+/* =========================
+   FLY BUTTON
+========================= */
+
+#flyButton{
+
+    margin-top:45px;
+
+    padding:20px 55px;
+
+    border:2px solid #f5c518;
+
+    background:#f5c518;
+
+    color:#000;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:5px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 20px #f5c518,
+        0 0 70px rgba(245,197,24,.5);
+
+    transition:.3s;
+}
+
+#flyButton:hover{
+
+    transform:scale(1.15);
+
+    background:#000;
+
+    color:#f5c518;
+}
+
+
+/* =========================
+   BATMAN DOORS
+========================= */
+
+.door{
+
+    position:fixed;
+
+    top:0;
+
+    width:50%;
+    height:100%;
+
+    background:#030405;
+
+    z-index:50;
+
+    transition:
+        transform 1.5s
+        cubic-bezier(.8,0,.2,1);
+}
+
+.left{
+    left:0;
+    border-right:2px solid #f5c518;
+}
+
+.right{
+    right:0;
+    border-left:2px solid #f5c518;
+}
+
+
+/* =========================
+   OPEN STATE
+========================= */
+
+body.open .left{
+    transform:translateX(-100%);
+}
+
+body.open .right{
+    transform:translateX(100%);
+}
+
+body.open #opening{
+    opacity:0;
+    pointer-events:none;
+}
+
+
+/* =========================
+   BIRTHDAY CARD
+========================= */
+
+#card{
+
+    width:min(850px,94%);
+
+    margin:auto;
+
+    padding:50px 20px 100px;
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:scale(.7);
+
+    transition:1.5s;
+
+    pointer-events:none;
+}
+
+body.open{
+
+    overflow-y:auto;
+}
+
+body.open #card{
+
+    opacity:1;
+
+    transform:scale(1);
+
+    pointer-events:auto;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#777;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+}
+
+.top span{
+    color:#f5c518;
+}
+
+.bigBat{
+
+    margin-top:30px;
+
+    font-size:65px;
+
+    filter:
+        drop-shadow(0 0 20px gold);
+}
+
+.present{
+
+    margin-top:15px;
+
+    color:#777;
+
+    font-size:10px;
+
+    letter-spacing:5px;
+}
+
+h1{
+
+    margin-top:30px;
+
+    font-size:
+        clamp(65px,13vw,140px);
+
+    line-height:.8;
+}
+
+h1 span{
+
+    display:block;
+
+    color:#f5c518;
+
+    text-shadow:
+        0 0 15px #f5c518,
+        0 0 50px #f5c518;
+}
+
+
+/* =========================
+   YOUR FULL PHOTO
+========================= */
+
+.photo{
+
+    width:min(90vw,600px);
+
+    margin:50px auto;
+
+    padding:8px;
+
+    background:#050505;
+
+    border:2px solid #f5c518;
+
+    box-shadow:
+        0 0 25px rgba(245,197,24,.6),
+        0 0 80px rgba(245,197,24,.2);
+}
+
+.photo img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    max-height:75vh;
+
+    object-fit:contain;
+}
+
+
+/* =========================
+   NAME
+========================= */
+
+.name{
+
+    font-size:30px;
+
+    letter-spacing:5px;
+}
+
+.name span{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:#f5c518;
+
+    font-size:55px;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+
+    max-width:700px;
+
+    margin:40px auto;
+
+    padding:30px;
+
+    background:rgba(0,0,0,.7);
+
+    border:1px solid rgba(245,197,24,.5);
+}
+
+.message h3{
+
+    color:#f5c518;
+
+    margin-bottom:25px;
+
+    letter-spacing:3px;
+}
+
+.message p{
+
+    color:#ddd;
+
+    line-height:2;
+
+    font-size:16px;
+}
+
+
+/* =========================
+   SECRET
+========================= */
+
+.secret{
+
+    margin-top:50px;
+
+    padding:40px 20px;
+
+    border-top:1px solid #f5c518;
+
+    border-bottom:1px solid #f5c518;
+}
+
+.secret .bat{
+
+    font-size:50px;
+}
+
+.secret h3{
+
+    margin:20px 0;
+
+    color:#f5c518;
+
+    font-size:30px;
+}
+
+.secret p{
+
+    color:#ccc;
+
+    line-height:2;
+}
+
+.secret h4{
+
+    margin-top:25px;
+
+    color:#f5c518;
+
+    font-size:25px;
+}
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+#closeButton{
+
+    margin-top:50px;
+
+    padding:15px 30px;
+
+    background:transparent;
+
+    border:1px solid #777;
+
+    color:#777;
+
+    cursor:pointer;
+
+    letter-spacing:3px;
+}
+
+#closeButton:hover{
+
+    color:#f5c518;
+
+    border-color:#f5c518;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .batSignal{
+
+        width:65px;
+        height:65px;
+
+        font-size:30px;
+
+        top:15px;
+        right:15px;
+    }
+
+    .gotham{
+
+        letter-spacing:5px;
+    }
+
+    .photo{
+
+        width:94vw;
+    }
+
+    .name span{
+
+        font-size:40px;
+    }
+
+    .message p{
+
+        font-size:14px;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <!-- BACKGROUND -->
-    <div class="background"></div>
 
-    <!-- FLYING BATS -->
-    <div class="bats">
+<!-- BACKGROUND -->
 
-        <span>🦇</span>
-        <span>🦇</span>
-        <span>🦇</span>
-        <span>🦇</span>
-        <span>🦇</span>
-        <span>🦇</span>
-        <span>🦇</span>
-        <span>🦇</span>
-        <span>🦇</span>
-        <span>🦇</span>
+<div class="background"></div>
+
+
+<!-- BATS -->
+
+<div class="bats">
+
+    <span>🦇</span>
+    <span>🦇</span>
+    <span>🦇</span>
+    <span>🦇</span>
+    <span>🦇</span>
+    <span>🦇</span>
+    <span>🦇</span>
+    <span>🦇</span>
+
+</div>
+
+
+<!-- BAT SIGNAL -->
+
+<div class="batSignal">
+    🦇
+</div>
+
+
+<!-- OPENING -->
+
+<section id="opening">
+
+    <div class="gotham">
+        GOTHAM CITY
+    </div>
+
+    <div class="classified">
+        ⚠ INCOMING TRANSMISSION ⚠
+    </div>
+
+    <button id="flyButton">
+        🦇 FLY 🦇
+    </button>
+
+</section>
+
+
+<!-- DOORS -->
+
+<div class="door left"></div>
+
+<div class="door right"></div>
+
+
+<!-- CARD -->
+
+<main id="card">
+
+    <div class="top">
+
+        <span>GOTHAM CITY</span>
+
+        <span>BAT-SIGNAL ONLINE</span>
 
     </div>
 
 
-    <!-- BAT SIGNAL -->
-
-    <div class="bat-signal">
+    <div class="bigBat">
         🦇
     </div>
 
 
-    <!-- OPENING -->
-
-    <section id="opening">
-
-        <div class="gotham">
-            GOTHAM CITY
-        </div>
-
-        <div class="classified">
-            ⚠ INCOMING TRANSMISSION ⚠
-        </div>
-
-        <button id="flyButton">
-
-            🦇 &nbsp; FLY &nbsp; 🦇
-
-        </button>
-
-    </section>
+    <div class="present">
+        THE DARK KNIGHT PRESENTS
+    </div>
 
 
-    <!-- BATMAN DOORS -->
+    <h1>
 
-    <div class="door left"></div>
-    <div class="door right"></div>
+        HAPPY
 
+        <span>
+            BIRTHDAY!
+        </span>
 
-    <!-- BIRTHDAY CARD -->
-
-    <main id="card">
-
-        <div class="top">
-
-            GOTHAM CITY
-
-            <span>
-                BAT-SIGNAL ONLINE
-            </span>
-
-        </div>
+    </h1>
 
 
-        <div class="big-bat">
+    <!-- YOUR PHOTO -->
+
+    <div class="photo">
+
+        <img
+            src="birthday.jpeg"
+            alt="Birthday Photo"
+        >
+
+    </div>
+
+
+    <div class="name">
+
+        TO
+
+        <span>
+            BHAIIII🐼
+        </span>
+
+    </div>
+
+
+    <!-- YOUR EXACT MESSAGE -->
+
+    <div class="message">
+
+        <h3>
+            🦇 BAT-COMPUTER MESSAGE
+        </h3>
+
+        <p>
+
+            Tonight, Gotham has a special mission...
+            <br><br>
+
+            🎂 It's your birthday!
+            <br>
+
+            HAPPY BIRTHDAY TO THE ANNOYING PERSON 🫶🏻🫠I MET ONLINE AND YET IT IS REMAINED AS ONLINE🙃..
+            BE HAPPY AND HEALTHY ALWAYS! ..KEEP SMILING AND LAUGHING AS U ALWAYS DO ...AND YES KUCH BHI HO U R FREE TO SHARE THINGS WITH ME AS U KNOW !
+            HAVE A BLAST !🐼🥳...
+
+        </p>
+
+    </div>
+
+
+    <!-- SECRET MESSAGE -->
+
+    <div class="secret">
+
+        <div class="bat">
             🦇
         </div>
 
+        <h3>
+            THE DARK KNIGHT'S MESSAGE
+        </h3>
 
-        <p class="present">
-            THE DARK KNIGHT PRESENTS
+        <p>
+
+            No matter how dark the night gets,
+            always remember that you're capable
+            of amazing things.
+
+            <br><br>
+
+            Keep shining.
+            Keep fighting.
+            Keep smiling. 🦇
+
         </p>
 
+        <h4>
+            HAPPY BIRTHDAY 🐼! 🎂
+        </h4>
 
-        <h1>
-
-            HAPPY
-
-            <span>
-                BIRTHDAY!
-            </span>
-
-        </h1>
+    </div>
 
 
-        <!-- FULL PHOTO -->
+    <button id="closeButton">
 
-        <div class="photo">
+        🦇 CLOSE TRANSMISSION
 
-            <img
-                src="birthday.jpeg"
-                alt="Birthday Photo"
-            >
-
-        </div>
+    </button>
 
 
-        <h2>
-            TO
-            <span>BHAIIII🐼</span>
-        </h2>
+    <footer>
+
+        GOTHAM CITY • BAT-SIGNAL ONLINE
+
+    </footer>
+
+</main>
 
 
-        <!-- YOUR MESSAGE -->
+<script>
 
-        <div class="message">
+/* =========================
+   FLY BUTTON
+========================= */
 
-            <h3>
-                🦇 BAT-COMPUTER MESSAGE
-            </h3>
+document
+.getElementById("flyButton")
+.addEventListener("click", function(){
 
-            <p>
+    document.body.classList.add("open");
 
-                Tonight, Gotham has a special mission...
-                <br><br>
+    createBats();
 
-                🎂 It's your birthday!
-                <br>
-
-                HAPPY BIRTHDAY TO THE ANNOYING PERSON 🫶🏻🫠I MET ONLINE AND YET IT IS REMAINED AS ONLINE🙃..
-                BE HAPPY AND HEALTHY ALWAYS! ..KEEP SMILING AND LAUGHING AS U ALWAYS DO ...AND YES KUCH BHI HO U R FREE TO SHARE THINGS WITH ME AS U KNOW !
-                HAVE A BLAST !🐼🥳...
-
-            </p>
-
-        </div>
+});
 
 
-        <!-- SECRET -->
+/* =========================
+   BAT EXPLOSION
+========================= */
 
-        <div class="secret">
+function createBats(){
 
-            <div>
-                🦇
-            </div>
+    for(let i=0;i<40;i++){
 
-            <h3>
-                THE DARK KNIGHT'S MESSAGE
-            </h3>
+        let bat=document.createElement("div");
 
-            <p>
+        bat.innerHTML="🦇";
 
-                No matter how dark the night gets,
-                always remember that you're capable
-                of amazing things.
+        bat.style.position="fixed";
 
-                <br><br>
+        bat.style.left="50%";
 
-                Keep shining.
-                Keep fighting.
-                Keep smiling. 🦇
+        bat.style.top="50%";
 
-            </p>
+        bat.style.zIndex="100";
 
-            <h4>
-                HAPPY BIRTHDAY 🐼! 🎂
-            </h4>
+        bat.style.pointerEvents="none";
 
-        </div>
+        bat.style.fontSize=
+            (15+Math.random()*45)+"px";
 
 
-        <button id="closeButton">
-
-            🦇 CLOSE TRANSMISSION
-
-        </button>
+        document.body.appendChild(bat);
 
 
-        <footer>
+        let x=
+            (Math.random()-.5)*1800;
 
-            GOTHAM CITY
-            •
-            BAT-SIGNAL ONLINE
-
-        </footer>
-
-    </main>
+        let y=
+            (Math.random()-.5)*1200;
 
 
-    <script src="script.js"></script>
+        bat.animate(
+
+            [
+
+                {
+                    transform:
+                    "translate(-50%,-50%) scale(.1)",
+
+                    opacity:0
+                },
+
+                {
+                    transform:
+                    `translate(-50%,-50%)
+                     translate(${x}px,${y}px)
+                     scale(2)`,
+
+                    opacity:1
+                },
+
+                {
+                    transform:
+                    `translate(-50%,-50%)
+                     translate(${x*1.5}px,${y*1.5}px)
+                     scale(.2)`,
+
+                    opacity:0
+                }
+
+            ],
+
+            {
+
+                duration:
+                    1500+
+                    Math.random()*1500,
+
+                easing:"ease-out"
+
+            }
+
+        );
+
+
+        setTimeout(function(){
+
+            bat.remove();
+
+        },3200);
+
+    }
+
+}
+
+
+/* =========================
+   CLOSE
+========================= */
+
+document
+.getElementById("closeButton")
+.addEventListener("click",function(){
+
+    document.body.classList.remove("open");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
+
+</script>
+
 
 </body>
-
 </html>
